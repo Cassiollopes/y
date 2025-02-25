@@ -18,11 +18,10 @@ export default function AuthButton({
   const router = useRouter()
 
   const signIn = async () => {
-    const origin = window.location.origin;
     await supabase.auth.signInWithOAuth({
       provider: provider!,
       options: {
-      redirectTo: `${origin}/auth/callback`,
+        redirectTo: `https://y-one-murex.vercel.app/auth/callback`,
       },
     });
   };
