@@ -13,4 +13,8 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
 ];
 
+eslintConfig.push({
+  ignores: ["src/utils/supabase/database.types.ts"],
+});
+
 export default eslintConfig;
