@@ -4,6 +4,8 @@ import ScrollVertical from "@/components/scroll-vertical";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const supabase = await createClient();
 
@@ -43,5 +45,3 @@ export default async function Home() {
     </>
   );
 }
-
-export const dynamic = "force-dynamic";

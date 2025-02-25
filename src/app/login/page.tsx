@@ -3,6 +3,8 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { BsGithub, BsGoogle } from "react-icons/bs";
 
+export const dynamic = "force-dynamic";
+
 export default async function Login() {
   const supabase = await createClient();
 
@@ -24,5 +26,3 @@ export default async function Login() {
     </div>
   );
 }
-
-export const dynamic = "force-dynamic";
