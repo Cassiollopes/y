@@ -21,7 +21,7 @@ export default function AuthButton({
     await supabase.auth.signInWithOAuth({
       provider: provider!,
       options: {
-        redirectTo: `https://y-one-murex.vercel.app/auth/callback`,
+        redirectTo: `http://localhost:3000/auth/callback`,
       },
     });
   };
