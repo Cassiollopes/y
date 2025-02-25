@@ -18,10 +18,11 @@ export default function AuthButton({
   const router = useRouter()
 
   const signIn = async () => {
+    const origin = window.location.origin;
     await supabase.auth.signInWithOAuth({
       provider: provider!,
       options: {
-        redirectTo: `http://localhost:3000/auth/callback`,
+      redirectTo: `${origin}/auth/callback`,
       },
     });
   };
