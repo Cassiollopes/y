@@ -28,15 +28,24 @@ export default function ImageUpload({ url }: { url: string }) {
     if (url) downloadImage(url);
   }, [url, supabase]);
 
-  return imageUrl ? (
-    <Image
-      src={imageUrl}
-      alt={""}
-      width={500}
-      height={500}
-      className="rounded-2xl border border-zinc-700/50 mt-3 w-full h-fit max-h-[500px] object-contain"
-    />
-  ) : (
-    <div></div>
+  return (
+    <div
+      className={`border w-full border-zinc-700/50 mt-3 rounded-2xl overflow-hidden  ${
+        imageUrl ? "" : "h-[502px]"
+      }`}
+    >
+      {imageUrl && (
+        <Image
+          src={imageUrl}
+          alt=""
+          width={500}
+          height={500}
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI/wN4oEBJWAAAAABJRU5ErkJggg=="
+          className="w-full h-fit max-h-[500px] object-contain opacity-0 transition-opacity duration-300"
+          onLoadingComplete={(img) => img.classList.remove("opacity-0")}
+        />
+      )}
+    </div>
   );
 }

@@ -84,7 +84,7 @@ export default function NewTweet({
 
   return (
     <form
-      className={`flex w-full h-full justify-between ${
+      className={`flex w-full justify-between ${
         answerOnTweet ? "p-0" : "px-4 py-3 pt-4"
       } ${(showActions || !answerOnTweet) && " flex-col"}`}
       onClick={answerOnTweet ? () => setShowActions(true) : undefined}
@@ -119,6 +119,7 @@ export default function NewTweet({
             icon={<BsX className="h-5 w-5" />}
             onClick={() => setPhotoFile(undefined)}
             className="absolute right-4 top-6"
+            contrast={true}
           />
         </div>
       )}
@@ -131,6 +132,7 @@ export default function NewTweet({
         {(showActions || !answerOnTweet) && (
           <div>
             <ActionButton
+              color={"sky"}
               icon={<TbPhoto className="text-sky-500 h-5 w-5" />}
               label="Adicionar Foto"
               onClick={handleButtonClick}

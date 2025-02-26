@@ -43,7 +43,7 @@ export default function Tweet({
           if ((e.target as HTMLElement).closest(".no-click")) {
             return;
           }
-          router.push(`${window.location.origin}/post/${tweet.id}`);
+          router.push(`${location.origin}/post/${tweet.id}`);
         }
       }}
       key={tweet.id}
@@ -96,7 +96,6 @@ export default function Tweet({
         {tweet.text && (
           <p className={`leading-none`}>{tweet.text}</p>
         )}
-
         {tweet.image && !answers && <ImageUpload url={tweet.image} />}
         {tweetWithAnswer && (
           <p className="text-zinc-500 font-light py-3">

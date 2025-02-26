@@ -35,6 +35,7 @@ export default function ActionButton({
   fillLabel,
   className,
   children,
+  contrast,
 }: VariantProps<typeof buttonStyles> & {
   onClick?: () => void;
   fill?: boolean;
@@ -45,6 +46,7 @@ export default function ActionButton({
   fillLabel?: string;
   className?: string;
   children?: ReactNode;
+  contrast?: boolean;
 }) {
   return (
     <button
@@ -59,7 +61,9 @@ export default function ActionButton({
         {fill ? iconFill : icon}
         <div
           className={clsx(
-            " p-4 rounded-full absolute transition-all duration-200",
+            `p-4 rounded-full absolute transition-all duration-200 ${
+              contrast ? "bg-slate-600/30" : ""
+            }`,
             {
               "group-hover:bg-pink-600/20": color === "pink",
               "group-hover:bg-sky-600/20": color === "sky",
