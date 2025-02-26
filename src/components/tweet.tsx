@@ -15,6 +15,10 @@ import Answer from "./answer";
 import { TweetWithAuthor } from "@/utils/types";
 import { useRouter } from "next/navigation";
 import NewTweet from "./new-tweet";
+import { SubmitButton } from "./button";
+import { LuSend } from "react-icons/lu";
+import NewTweetAbsolute from "./new-tweet-absolute";
+import { useState } from "react";
 
 export default function Tweet({
   tweet,
@@ -35,6 +39,7 @@ export default function Tweet({
   const userName = UserNameFormatter(
     tweet.author.user_name || tweet.author.name
   );
+  const [showInput, setShowInput] = useState(false);
 
   return (
     <article
@@ -93,9 +98,7 @@ export default function Tweet({
             </p>
           </div>
         </div>
-        {tweet.text && (
-          <p className={`leading-none`}>{tweet.text}</p>
-        )}
+        {tweet.text && <p className={`leading-none`}>{tweet.text}</p>}
         {tweet.image && !answers && <ImageUpload url={tweet.image} />}
         {tweetWithAnswer && (
           <p className="text-zinc-500 font-light py-3">
@@ -110,7 +113,7 @@ export default function Tweet({
           <div
             className={`pt-3 flex items-center w-full ${
               tweetWithAnswer &&
-              "py-3 border-t border-b mb-4 border-zinc-700 px-2"
+              "py-3 border-t border-b md:mb-4 border-zinc-700 px-2"
             }`}
           >
             <div className="w-1/5 no-click">
@@ -122,12 +125,20 @@ export default function Tweet({
           </div>
         )}
         {tweetWithAnswer && user && (
-          <NewTweet
-            user={user}
-            answer={true}
-            answerOnTweet={true}
-            tweetId={tweet.id}
-          />
+          <div className="w-full">
+            <div className="max-md:hidden w-full">
+              <NewTweet
+                user={user}
+                answer={true}
+                answerOnTweet={true}
+                tweetId={tweet.id}
+              />
+            </div>
+            <SubmitButton onClick={() => setShowInput(true)} className="w-[50px] h-[50px] fixed bottom-6 right-6 rounded-full shadow-sm shadow-white">
+              <LuSend className="h-5 w-5 absolute" />
+            </SubmitButton>
+            {showInput && <NewTweetAbsolute user={user} answer={true} tweet={tweet} callback={() => setShowInput(false)} onClick={() => setShowInput(false)}/>}
+          </div>
         )}
       </div>
     </article>
