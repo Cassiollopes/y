@@ -6,13 +6,11 @@ import ActionButton from "./button";
 import { BiArrowBack } from "react-icons/bi";
 
 export default function NewTweetAbsolute({
-  onClick,
   answer,
   user,
   tweet,
   callback,
 }: {
-  onClick: () => void;
   answer?: boolean;
   user: User;
   tweet?: TweetWithAuthor;
@@ -22,7 +20,7 @@ export default function NewTweetAbsolute({
     <div
       onClick={(e) => {
         if (e.target === e.currentTarget) {
-          onClick();
+          callback();
         }
       }}
       className="bg-slate-600/50 fixed top-0 left-0 w-full h-full z-[100] flex justify-center items-start md:pt-10"
@@ -31,7 +29,7 @@ export default function NewTweetAbsolute({
         <div className="md:hidden p-4">
           <ActionButton
             label="Fechar"
-            onClick={onClick}
+            onClick={callback}
             icon={<BiArrowBack className="h-5 w-5" />}
           />
         </div>

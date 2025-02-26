@@ -54,7 +54,6 @@ export default function SideBar({ user }: { user: User }) {
         </SubmitButton>
         {showInput && (
           <NewTweetAbsolute
-            onClick={() => setShowInput(false)}
             user={user}
             callback={handleHideInput}
           />

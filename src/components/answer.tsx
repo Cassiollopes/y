@@ -35,7 +35,6 @@ export default function Answer({
       />
       {showInput && (
         <NewTweetAbsolute
-          onClick={handleHideInput}
           tweet={tweet}
           user={user}
           answer={true}

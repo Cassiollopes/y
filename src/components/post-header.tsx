@@ -37,7 +37,7 @@ export default function PostHeader({tweet, user}: {tweet: TweetWithAuthor, user:
           <div>
             <button
               onClick={handleAnswer}
-              className="py-1.5 font-extrabold px-4 border border-slate-500 hover:bg-white/10 text-white rounded-full"
+              className="max-md:hidden py-1.5 font-extrabold px-4 border border-slate-500 hover:bg-white/10 text-white rounded-full"
             >
               <p className="text-sm">Responder</p>
             </button>
@@ -46,7 +46,6 @@ export default function PostHeader({tweet, user}: {tweet: TweetWithAuthor, user:
       </Header>
       {showInput && (
         <NewTweetAbsolute
-          onClick={handleHideInput}
           tweet={tweet}
           user={user}
           answer={true}

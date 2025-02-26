@@ -134,10 +134,20 @@ export default function Tweet({
                 tweetId={tweet.id}
               />
             </div>
-            <SubmitButton onClick={() => setShowInput(true)} className="w-[50px] h-[50px] fixed bottom-6 right-6 rounded-full shadow-sm shadow-white">
+            <SubmitButton
+              onClick={() => setShowInput(true)}
+              className="w-[50px] h-[50px] fixed bottom-6 right-6 rounded-full shadow-sm shadow-white"
+            >
               <LuSend className="h-5 w-5 absolute" />
             </SubmitButton>
-            {showInput && <NewTweetAbsolute user={user} answer={true} tweet={tweet} callback={() => setShowInput(false)} onClick={() => setShowInput(false)}/>}
+            {showInput && (
+              <NewTweetAbsolute
+                user={user}
+                answer={true}
+                tweet={tweet}
+                callback={() => setShowInput(false)}
+              />
+            )}
           </div>
         )}
       </div>
