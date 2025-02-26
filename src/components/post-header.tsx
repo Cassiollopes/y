@@ -27,7 +27,6 @@ export default function PostHeader({tweet, user}: {tweet: TweetWithAuthor, user:
         <div className="w-full flex gap-8 items-center justify-between">
           <div className="flex items-center gap-8">
             <ActionButton
-              color="gray"
               onClick={() => router.back()}
               label="Voltar"
               icon={<BiArrowBack className="h-5 w-5" />}
