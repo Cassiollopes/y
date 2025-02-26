@@ -21,7 +21,7 @@ export default function AuthButton({
     await supabase.auth.signInWithOAuth({
       provider: provider!,
       options: {
-        redirectTo: `${window.location.href}/auth/callback`,
+        redirectTo: `${location.origin}/auth/callback`,
       },
     });
   };
