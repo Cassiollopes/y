@@ -16,9 +16,9 @@ import { TweetWithAuthor } from "@/utils/types";
 import { useRouter } from "next/navigation";
 import NewTweet from "./new-tweet";
 import { SubmitButton } from "./button";
-import { LuSend } from "react-icons/lu";
 import NewTweetAbsolute from "./new-tweet-absolute";
 import { useState } from "react";
+import { BiMessage } from "react-icons/bi";
 
 export default function Tweet({
   tweet,
@@ -136,9 +136,9 @@ export default function Tweet({
             </div>
             <SubmitButton
               onClick={() => setShowInput(true)}
-              className="w-[50px] h-[50px] fixed bottom-6 right-6 rounded-full shadow-sm shadow-white"
+              className="md:hidden w-[50px] h-[50px] fixed bottom-6 right-6 rounded-full shadow-sm shadow-white"
             >
-              <LuSend className="h-5 w-5 absolute" />
+              <BiMessage className="h-5 w-5 absolute" />
             </SubmitButton>
             {showInput && (
               <NewTweetAbsolute
