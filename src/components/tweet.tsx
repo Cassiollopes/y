@@ -19,6 +19,7 @@ import { SubmitButton } from "./button";
 import NewTweetAbsolute from "./new-tweet-absolute";
 import { useState } from "react";
 import { BiMessage } from "react-icons/bi";
+import { GoHome } from "react-icons/go";
 
 export default function Tweet({
   tweet,
@@ -134,12 +135,21 @@ export default function Tweet({
                 tweetId={tweet.id}
               />
             </div>
-            <SubmitButton
-              onClick={() => setShowInput(true)}
-              className="md:hidden w-[50px] h-[50px] fixed bottom-6 right-6 rounded-full shadow-sm shadow-white"
-            >
-              <BiMessage className="h-5 w-5 absolute" />
-            </SubmitButton>
+            <div className="fixed bottom-6 right-6 md:hidden flex gap-2">
+              <SubmitButton
+                onClick={() => router.push("/")}
+                className="w-[50px] h-[50px] rounded-full shadow-sm shadow-white"
+              >
+                <GoHome className="h-5 w-5 absolute" />
+              </SubmitButton>
+              <SubmitButton
+                onClick={() => setShowInput(true)}
+                className="w-[50px] h-[50px] rounded-full shadow-sm shadow-white"
+              >
+                <BiMessage className="h-5 w-5 absolute" />
+              </SubmitButton>
+            </div>
+
             {showInput && (
               <NewTweetAbsolute
                 user={user}
