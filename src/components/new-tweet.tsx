@@ -115,7 +115,7 @@ export default function NewTweet({
             className="rounded-lg w-full h-fit border border-zinc-600/20 mt-2"
           />
           <ActionButton
-            label="Fechar"
+            label="Remover"
             icon={<BsX className="h-5 w-5" />}
             onClick={() => setPhotoFile(undefined)}
             className="absolute right-4 top-6"
@@ -132,7 +132,7 @@ export default function NewTweet({
           <div>
             <ActionButton
               icon={<TbPhoto className="text-sky-500 h-5 w-5" />}
-              label="foto"
+              label="Adicionar Foto"
               onClick={handleButtonClick}
             />
             <input
