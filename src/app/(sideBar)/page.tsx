@@ -22,7 +22,8 @@ export default async function Home() {
     .select(
       "*, author: profiles(*), likes(*), answers: tweets(*)"
     )
-    .is("tweet_id", null);
+    .is("tweet_id", null)
+    .order("created_at", {ascending: false})
 
   const tweets =
     data?.map((tweet) => ({

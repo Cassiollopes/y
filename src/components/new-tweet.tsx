@@ -4,10 +4,10 @@ import { createClient } from "@/utils/supabase/client";
 import { User } from "@supabase/supabase-js";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { BsX } from "react-icons/bs";
 import { TbPhoto } from "react-icons/tb";
-import { SubmitButton } from "./button";
+import ActionButton, { SubmitButton } from "./button";
 
 export default function NewTweet({
   user,
@@ -26,6 +26,14 @@ export default function NewTweet({
   const [text, setText] = useState<string | undefined>();
   const [photoFile, setPhotoFile] = useState<File | undefined>();
   const [showActions, setShowActions] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleButtonClick = () => {
+    // Verifica se o ref está realmente apontando para o elemento input
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
 
   const addTweet = async (formData: FormData) => {
     const supabase = createClient();
@@ -106,12 +114,12 @@ export default function NewTweet({
             height={500}
             className="rounded-lg w-full h-fit border border-zinc-600/20 mt-2"
           />
-          <button
-            className="absolute right-2 top-4 bg-zinc-500/30 p-1 rounded-full hover:bg-zinc-500/20"
+          <ActionButton
+            label="Fechar"
+            icon={<BsX className="h-5 w-5" />}
             onClick={() => setPhotoFile(undefined)}
-          >
-            <BsX className="h-5 w-5" />
-          </button>
+            className="absolute right-4 top-6"
+          />
         </div>
       )}
       <div
@@ -121,9 +129,14 @@ export default function NewTweet({
         }`}
       >
         {(showActions || !answerOnTweet) && (
-          <label className="cursor-pointer group relative flex items-center justify-center">
-            <TbPhoto className="text-sky-500 h-5 w-5" />
+          <div>
+            <ActionButton
+              icon={<TbPhoto className="text-sky-500 h-5 w-5" />}
+              label="foto"
+              onClick={handleButtonClick}
+            />
             <input
+              ref={fileInputRef}
               type="file"
               accept="image/jpeg"
               hidden
@@ -134,8 +147,7 @@ export default function NewTweet({
                 }
               }}
             />
-            <div className="absolute p-4 group-hover:bg-sky-500/20 rounded-full transition-all duration-200"></div>
-          </label>
+          </div>
         )}
         <SubmitButton
           disabled={!text && !photoFile}
