@@ -80,11 +80,8 @@ export default function SideBar({ user }: { user: User }) {
             </div>
           </SideButton>
           {showSignOut && (
-            <div>
-              <div
-                onClick={() => setShowSignOut(false)}
-                className="fixed top-0 left-0 w-full h-full z-[100]"
-              ></div>
+            <div className="absolute left-0">
+
               <button
                 onClick={signOut}
                 className="absolute flex -bottom-13 p-4 left-1/2 transform -translate-x-1/2 text-sm font-extrabold shadow-md rounded-2xl bg-background w-[300px] z-[200] hover:bg-zinc-900"
