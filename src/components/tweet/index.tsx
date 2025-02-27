@@ -10,16 +10,10 @@ import {
   FullDateFormatter,
   NameFormatter,
   UserNameFormatter,
-} from "@/utils/format";
+} from "@/utils";
 import Answer from "../answer";
 import { TweetWithAuthor } from "@/utils/types";
 import { useRouter } from "next/navigation";
-import NewTweet from "./new-tweet";
-import { SubmitButton } from "../button";
-import NewTweetAbsolute from "./new-tweet-absolute";
-import { useState } from "react";
-import { BiMessage } from "react-icons/bi";
-import { GoHome } from "react-icons/go";
 
 interface TweetProps {
   tweet: TweetWithAuthor;
@@ -36,14 +30,12 @@ export default function Tweet({
   tweetWithAnswer,
   user,
 }: TweetProps) {
-  
   const router = useRouter();
   const createdAt = DateFormatter(tweet.created_at);
   const name = NameFormatter(tweet.author.name);
   const userName = UserNameFormatter(
     tweet.author.user_name || tweet.author.name
   );
-  const [showInput, setShowInput] = useState(false);
 
   return (
     <article
@@ -56,8 +48,8 @@ export default function Tweet({
         }
       }}
       key={tweet.id}
-      className={`flex gap-[6px] justify-start w-full px-4 py-3 hover:bg-white/[0.025] transition-all duration-200 ${
-        tweetWithAnswer ? "pb-6 border-t-0 pt-1" : "cursor-pointer"
+      className={`flex gap-[6px] justify-start w-full hover:bg-white/[0.025] transition-all duration-200 ${
+        tweetWithAnswer ? "border-t-0" : "cursor-pointer px-4 py-3"
       } ${!answerTweet && !answers && "border-t"}  border-zinc-700/75`}
     >
       {!tweetWithAnswer && (
@@ -72,7 +64,6 @@ export default function Tweet({
           {answers && <div className="h-full w-[1.6px] bg-zinc-500/50"></div>}
         </div>
       )}
-
       <div className="flex flex-col items-start flex-1 text-white/95">
         <div className="flex gap-2">
           {tweetWithAnswer && (
@@ -117,7 +108,7 @@ export default function Tweet({
           <div
             className={`pt-3 flex items-center w-full ${
               tweetWithAnswer &&
-              "py-3 border-t border-b md:mb-4 border-zinc-700 px-2"
+              "md:py-3 border-t md:border-b md:mb-4 border-zinc-700 px-2"
             }`}
           >
             <div className="w-1/5 no-click">
@@ -126,41 +117,6 @@ export default function Tweet({
             <div className="no-click">
               <Likes tweet={tweet} />
             </div>
-          </div>
-        )}
-        {tweetWithAnswer && user && (
-          <div className="w-full">
-            <div className="max-md:hidden w-full">
-              <NewTweet
-                user={user}
-                answer={true}
-                answerOnTweet={true}
-                tweetId={tweet.id}
-              />
-            </div>
-            <div className="fixed bottom-6 right-6 md:hidden flex gap-2">
-              <SubmitButton
-                onClick={() => router.push("/")}
-                className="w-[50px] h-[50px] rounded-full shadow-sm shadow-white"
-              >
-                <GoHome className="h-5 w-5 absolute" />
-              </SubmitButton>
-              <SubmitButton
-                onClick={() => setShowInput(true)}
-                className="w-[50px] h-[50px] rounded-full shadow-sm shadow-white"
-              >
-                <BiMessage className="h-5 w-5 absolute" />
-              </SubmitButton>
-            </div>
-
-            {showInput && (
-              <NewTweetAbsolute
-                user={user}
-                answer={true}
-                tweet={tweet}
-                callback={() => setShowInput(false)}
-              />
-            )}
           </div>
         )}
       </div>

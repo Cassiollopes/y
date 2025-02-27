@@ -10,7 +10,6 @@ import { createClient } from "@/utils/supabase/client";
 import { SubmitButton } from "../button";
 import { LuSend } from "react-icons/lu";
 import NewTweetAbsolute from "./new-tweet-absolute";
-import { GoSignOut } from "react-icons/go";
 
 interface TweetListProps {
   tweets: TweetWithAuthor[];
@@ -21,11 +20,6 @@ export default function TweetList({ tweets, user }: TweetListProps) {
   const supabase = createClient();
   const router = useRouter();
   const [showInput, setShowInput] = useState(false);
-
-  const signOut = async () => {
-    await supabase.auth.signOut();
-    router.refresh();
-  };
 
   useEffect(() => {
     const channel = supabase
@@ -56,21 +50,12 @@ export default function TweetList({ tweets, user }: TweetListProps) {
       {tweets.map((tweet) => (
         <div key={tweet.id}>
           <Tweet tweet={tweet} user={user} />
-          <div className="md:hidden fixed bottom-6 right-6 flex gap-6">
-            <button
-              onClick={() => signOut()}
-              className="flex items-center justify-center text-red-600/30"
-            >
-              <GoSignOut className="h-5 w-5 absolute" />
-            </button>
-            <SubmitButton
-              onClick={() => setShowInput(true)}
-              className="w-[50px] h-[50px] rounded-full shadow-sm shadow-white"
-            >
-              <LuSend className="h-5 w-5 absolute" />
-            </SubmitButton>
-          </div>
-
+          <SubmitButton
+            onClick={() => setShowInput(true)}
+            className="w-[50px] h-[50px] rounded-full shadow-sm shadow-white fixed bottom-16 right-6 md:hidden"
+          >
+            <LuSend className="h-5 w-5 absolute" />
+          </SubmitButton>
           {showInput && (
             <NewTweetAbsolute
               user={user}

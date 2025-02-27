@@ -1,6 +1,6 @@
 "use client";
 
-import { NameFormatter, UserNameFormatter } from "@/utils/format";
+import { NameFormatter, UserNameFormatter } from "@/utils";
 import { User } from "@supabase/supabase-js";
 import Image from "next/image";
 import { ReactNode, useState } from "react";
@@ -33,10 +33,10 @@ export default function SideBar({ user }: { user: User }) {
   );
 
   return (
-    <div className="flex max-2xl:justify-end py-1 xl:w-[15%] 2xl:w-[20%] max-md:hidden sticky top-0 z-[100]">
-      <div className="flex flex-col max-2xl:items-center max-2xl:w-fit w-full">
-        <SideButton className="w-[50px] h-[50px] justify-center gap-0 mb-0.5">
-          <h1 className="text-4xl font-serif">Y</h1>
+    <div className="flex max-2xl:justify-end md:py-1 xl:w-[15%] 2xl:w-[20%] max-md:bottom-0 max-md:left-0 sticky md:top-0 z-[100] max-md:bg-black max-md:h-fit max-md:w-full max-md:justify-center">
+      <div className="flex md:flex-col max-2xl:items-center md:-2xl:w-fit w-full max-md:justify-around max-md:py-2 max-md:border-t border-white/20">
+        <SideButton className="md:w-[50px] md:h-[50px] justify-center gap-0 md:mb-0.5">
+          <h1 className="max-md:text-3xl md:text-4xl font-serif">Y</h1>
         </SideButton>
         <SideButton
           label="Página Inicial"
@@ -47,7 +47,7 @@ export default function SideBar({ user }: { user: User }) {
         />
         <SubmitButton
           onClick={() => setShowInput(true)}
-          className="bg-white 2xl:p-3.5 mt-2 rounded-full text-black font-bold w-[90%] max-2xl:w-[50px] max-2xl:h-[50px] relative"
+          className="max-md:hidden bg-white 2xl:p-3.5 mt-2 rounded-full text-black font-bold w-[90%] max-2xl:w-[50px] max-2xl:h-[50px] relative"
         >
           <p className="max-2xl:hidden">Postar</p>
           <LuSend className="2xl:hidden h-5 w-5 absolute" />
@@ -55,9 +55,9 @@ export default function SideBar({ user }: { user: User }) {
         {showInput && (
           <NewTweetAbsolute user={user} callback={handleHideInput} />
         )}
-        <div className="relative">
+        <div className="relative max-md:flex">
           <SideButton
-            className="mt-4 2xl:w-full"
+            className="md:mt-4 2xl:w-full"
             onClick={() => setShowSignOut(true)}
             style={{ gap: "8px" }}
           >
@@ -66,7 +66,7 @@ export default function SideBar({ user }: { user: User }) {
               alt={user.id}
               width={40}
               height={40}
-              className="rounded-full w-[40px] h-[40px]"
+              className="rounded-full w-[40px] h-[40px] max-md:h-[32px] max-md:w-[32px]"
             />
             <div className="w-full flex justify-between items-center max-2xl:hidden">
               <div className="text-base flex flex-col items-start">
@@ -77,14 +77,14 @@ export default function SideBar({ user }: { user: User }) {
             </div>
           </SideButton>
           {showSignOut && (
-            <div className="absolute left-0">
+            <div className="absolute max-md:right-0">
               <div
                 onClick={() => setShowSignOut(false)}
                 className="fixed top-0 left-0 w-full h-full z-[100]"
               ></div>
               <button
                 onClick={signOut}
-                className="flex -bottom-13 p-4 text-sm font-extrabold shadow-md rounded-2xl bg-background w-[300px] absolute z-[200] hover:bg-zinc-900"
+                className="flex right-0 max-md:w-fit truncate max-md:-top-16 p-4 text-sm font-extrabold shadow-md rounded-2xl bg-background w-[300px] absolute z-[200] hover:bg-zinc-900"
                 style={{ boxShadow: "0px 0px 7px rgba(255, 255, 255, 0.5)" }}
               >
                 Sair de {userName}
@@ -120,7 +120,7 @@ export function SideButton({
       <div
         className={`text-white/95 ${
           pathname === link ? "font-bold" : ""
-        } text-xl p-3 rounded-full group-hover:bg-white/10 transition-all duration-200 items-center flex w-fit ${
+        } text-xl md:p-3 rounded-full group-hover:bg-white/10 transition-all duration-200 items-center flex w-fit ${
           props.className
         }`}
         style={{ gap: props.style?.gap || "16px" }}
@@ -137,7 +137,7 @@ export function SideButton({
       style={props.style}
     >
       <div
-        className={`text-white/95 font-bold text-xl p-3 rounded-full group-hover:bg-white/10 transition-all duration-200 items-center flex w-fit ${props.className}`}
+        className={`text-white/95 font-bold text-xl md:p-3 rounded-full group-hover:bg-white/10 transition-all duration-200 items-center flex w-fit ${props.className}`}
         style={{ gap: props.style?.gap || "16px" }}
       >
         {props.children}
