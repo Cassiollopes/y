@@ -35,7 +35,7 @@ export default function Nav({ user }: { user: User }) {
         setVisible(true);
       } else {
         if (direction < 0) {
-          if (pixelDifference >= 7 && Math.floor(pixelDifference) % 7 === 0) {
+          if (pixelDifference >= 5 && Math.floor(pixelDifference) % 5 === 0) {
             setVisible(true);
           }
         } else if (direction > 0) {
