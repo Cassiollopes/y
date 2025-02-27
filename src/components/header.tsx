@@ -34,8 +34,8 @@ export default function Header({
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      animate={window.innerWidth < 768 && { opacity: visible ? 1 : 0 }}
-      transition={{ duration: 0.3 }}
+      animate={window.innerWidth < 768 && { y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
       className={`sticky top-0 border-b px-4 border-zinc-700/75 w-full backdrop-blur-lg bg-black/70 z-50 flex justify-around ${props.className}`}
     >
       {props.children}
