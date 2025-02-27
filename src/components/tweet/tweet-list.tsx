@@ -3,22 +3,21 @@
 import { User } from "@supabase/supabase-js";
 import NewTweet from "./new-tweet";
 import { TweetWithAuthor } from "@/utils/types";
-import Tweet from "./tweet";
+import Tweet from ".";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
-import { SubmitButton } from "./button";
+import { SubmitButton } from "../button";
 import { LuSend } from "react-icons/lu";
 import NewTweetAbsolute from "./new-tweet-absolute";
 import { GoSignOut } from "react-icons/go";
 
-export default function Feed({
-  tweets,
-  user,
-}: {
+interface TweetListProps {
   tweets: TweetWithAuthor[];
   user: User;
-}) {
+}
+
+export default function TweetList({ tweets, user }: TweetListProps) {
   const supabase = createClient();
   const router = useRouter();
   const [showInput, setShowInput] = useState(false);
@@ -60,7 +59,7 @@ export default function Feed({
           <div className="md:hidden fixed bottom-6 right-6 flex gap-6">
             <button
               onClick={() => signOut()}
-              className="flex items-center justify-center text-red-600/30"  
+              className="flex items-center justify-center text-red-600/30"
             >
               <GoSignOut className="h-5 w-5 absolute" />
             </button>

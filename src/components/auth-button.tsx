@@ -5,17 +5,15 @@ import { Provider } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
 
-export default function AuthButton({
-  provider,
-  icon,
-  logged,
-}: {
-  provider?: Provider;
+interface AuthButtonProps {
+  provider: Provider;
   icon: ReactNode;
   logged?: boolean;
-}) {
+}
+
+export default function AuthButton({ provider, icon, logged }: AuthButtonProps) {
   const supabase = createClient();
-  const router = useRouter()
+  const router = useRouter();
 
   const signIn = async () => {
     await supabase.auth.signInWithOAuth({
@@ -28,7 +26,7 @@ export default function AuthButton({
 
   const signOut = async () => {
     await supabase.auth.signOut();
-    router.refresh()
+    router.refresh();
   };
 
   return (

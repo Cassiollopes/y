@@ -1,6 +1,5 @@
-import Feed from "@/components/feed";
+import Feed from "@/components/tweet/tweet-list";
 import Header from "@/components/header";
-import ScrollVertical from "@/components/scroll-vertical";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -19,11 +18,9 @@ export default async function Home() {
 
   const { data } = await supabase
     .from("tweets")
-    .select(
-      "*, author: profiles(*), likes(*), answers: tweets(*)"
-    )
+    .select("*, author: profiles(*), likes(*), answers: tweets(*)")
     .is("tweet_id", null)
-    .order("created_at", {ascending: false})
+    .order("created_at", { ascending: false });
 
   const tweets =
     data?.map((tweet) => ({
@@ -33,16 +30,14 @@ export default async function Home() {
     })) || [];
 
   return (
-    <>
+    <div className="w-full">
       <Header>
         <div className="h-full py-4 relative">
           <p className="font-bold text-sm">Para você</p>
           <div className="absolute bottom-0 bg-sky-500 h-1 w-full rounded-full"></div>
         </div>
       </Header>
-      <ScrollVertical>
-        <Feed tweets={tweets} user={user} />
-      </ScrollVertical>
-    </>
+      <Feed tweets={tweets} user={user} />
+    </div>
   );
 }

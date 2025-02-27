@@ -7,7 +7,15 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { BsX } from "react-icons/bs";
 import { TbPhoto } from "react-icons/tb";
-import ActionButton, { SubmitButton } from "./button";
+import ActionButton, { SubmitButton } from "../button";
+
+interface NewTweetProps {
+  user: User;
+  answer?: boolean;
+  tweetId?: string;
+  callback?: () => void;
+  answerOnTweet?: boolean;
+}
 
 export default function NewTweet({
   user,
@@ -15,13 +23,8 @@ export default function NewTweet({
   tweetId,
   callback,
   answerOnTweet,
-}: {
-  user: User;
-  answer?: boolean;
-  tweetId?: string;
-  callback?: () => void;
-  answerOnTweet?: boolean;
-}) {
+}: NewTweetProps) {
+  
   const router = useRouter();
   const [text, setText] = useState<string | undefined>();
   const [photoFile, setPhotoFile] = useState<File | undefined>();
@@ -29,7 +32,6 @@ export default function NewTweet({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleButtonClick = () => {
-    // Verifica se o ref está realmente apontando para o elemento input
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }

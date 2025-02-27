@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { BsPatchCheckFill } from "react-icons/bs";
-import ImageUpload from "./image";
-import Likes from "./likes";
+import ImageUpload from "../image";
+import Likes from "../likes";
 import { User } from "@supabase/supabase-js";
 import {
   DateFormatter,
@@ -11,15 +11,23 @@ import {
   NameFormatter,
   UserNameFormatter,
 } from "@/utils/format";
-import Answer from "./answer";
+import Answer from "../answer";
 import { TweetWithAuthor } from "@/utils/types";
 import { useRouter } from "next/navigation";
 import NewTweet from "./new-tweet";
-import { SubmitButton } from "./button";
+import { SubmitButton } from "../button";
 import NewTweetAbsolute from "./new-tweet-absolute";
 import { useState } from "react";
 import { BiMessage } from "react-icons/bi";
 import { GoHome } from "react-icons/go";
+
+interface TweetProps {
+  tweet: TweetWithAuthor;
+  answers?: boolean;
+  answerTweet?: boolean;
+  tweetWithAnswer?: boolean;
+  user?: User;
+}
 
 export default function Tweet({
   tweet,
@@ -27,13 +35,8 @@ export default function Tweet({
   answerTweet,
   tweetWithAnswer,
   user,
-}: {
-  tweet: TweetWithAuthor;
-  answers?: boolean;
-  answerTweet?: boolean;
-  tweetWithAnswer?: boolean;
-  user?: User;
-}) {
+}: TweetProps) {
+  
   const router = useRouter();
   const createdAt = DateFormatter(tweet.created_at);
   const name = NameFormatter(tweet.author.name);

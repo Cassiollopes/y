@@ -5,11 +5,13 @@ import ActionButton from "./button";
 import Header from "./header";
 import { BiArrowBack } from "react-icons/bi";
 import { useState } from "react";
-import NewTweetAbsolute from "./new-tweet-absolute";
-import { TweetWithAuthor } from "@/utils/types";
-import { User } from "@supabase/supabase-js";
+import NewTweetAbsolute from "./tweet/new-tweet-absolute";
+import { AnswerProps } from "./answer";
 
-export default function PostHeader({tweet, user}: {tweet: TweetWithAuthor, user: User}) {
+export default function PostHeader({
+  tweet,
+  user,
+}: AnswerProps) {
   const router = useRouter();
   const [showInput, setShowInput] = useState(false);
 

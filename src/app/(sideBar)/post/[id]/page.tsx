@@ -1,6 +1,5 @@
-import AnswersList from "@/components/answers-list";
+import AnswersList from "@/components/answer/answers-list";
 import PostHeader from "@/components/post-header";
-import ScrollVertical from "@/components/scroll-vertical";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -33,11 +32,13 @@ export default async function Post({
           (like) => like.user_id === user.id
         ),
         likes: data[0].likes.length,
-      answers: data[0].answers.map((answer) => ({
-        ...answer,
-        user_has_liked: !!answer.likes.find((like) => like.user_id === user.id),
-        likes: answer.likes.length,
-      })),
+        answers: data[0].answers.map((answer) => ({
+          ...answer,
+          user_has_liked: !!answer.likes.find(
+            (like) => like.user_id === user.id
+          ),
+          likes: answer.likes.length,
+        })),
       }
     : null;
 
@@ -46,11 +47,9 @@ export default async function Post({
   }
 
   return (
-    <>
+    <div className="w-full">
       <PostHeader tweet={tweet} user={user} />
-      <ScrollVertical>
-        <AnswersList tweet={tweet} user={user} />
-      </ScrollVertical>
-    </>
+      <AnswersList tweet={tweet} user={user} />
+    </div>
   );
 }

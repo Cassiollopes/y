@@ -1,17 +1,11 @@
-import { ReactNode } from "react";
-
 export default function Header({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={`border-b px-4 border-zinc-700/75 w-full backdrop-blur-lg bg-black/70 z-50 flex justify-around ${className}`}
+      className={`sticky top-0 border-b px-4 border-zinc-700/75 w-full backdrop-blur-lg bg-black/70 z-50 flex justify-around ${props.className}`}
     >
-      {children}
+      {props.children}
     </div>
   );
 }

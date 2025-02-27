@@ -3,17 +3,16 @@
 import { useState } from "react";
 import { User } from "@supabase/supabase-js";
 import { TweetWithAuthor } from "@/utils/types";
-import ActionButton from "./button";
+import ActionButton from "../button";
 import { FaRegCommentAlt } from "react-icons/fa";
-import NewTweetAbsolute from "./new-tweet-absolute";
+import NewTweetAbsolute from "../tweet/new-tweet-absolute";
 
-export default function Answer({
-  tweet,
-  user,
-}: {
+export interface AnswerProps {
   tweet: TweetWithAuthor;
   user: User;
-}) {
+}
+
+export default function Answer({ tweet, user }: AnswerProps) {
   const [showInput, setShowInput] = useState(false);
 
   const handleHideInput = () => {
