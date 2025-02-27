@@ -25,14 +25,20 @@ export default function SideBar({ user }: { user: User }) {
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     if (typeof current === "number") {
-      const direction = current! - scrollYProgress.getPrevious()!;
+      const previous = scrollYProgress.getPrevious();
+      const direction = current - previous!;
+
+      const pixelHeight = window.innerHeight;
+      const pixelDifference = Math.abs(direction * pixelHeight);
 
       if (scrollYProgress.get() === 0) {
         setVisible(true);
       } else {
         if (direction < 0) {
-          setVisible(true);
-        } else {
+          if (pixelDifference >= 5 && Math.floor(pixelDifference) % 5 === 0) {
+            setVisible(true);
+          }
+        } else if (direction > 0) {
           setVisible(false);
         }
       }
