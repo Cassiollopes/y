@@ -114,7 +114,7 @@ export function SideButton({
   return link ? (
     <Link
       href={link}
-      className={`2xl:w-full group cursor-pointer ${props.className}`}
+      className={`2xl:w-full md:group cursor-pointer ${props.className}`}
       style={props.style}
     >
       <div
@@ -133,7 +133,7 @@ export function SideButton({
   ) : (
     <button
       {...props}
-      className={`2xl:w-full group cursor-pointer ${props.className}`}
+      className={`2xl:w-full md:group cursor-pointer ${props.className}`}
       style={props.style}
     >
       <div
