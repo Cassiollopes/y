@@ -34,7 +34,7 @@ export default function SideBar({ user }: { user: User }) {
 
   return (
     <div className="flex max-2xl:justify-end md:py-1 xl:w-[15%] 2xl:w-[20%] max-md:bottom-0 max-md:left-0 sticky md:top-0 z-[100] max-md:bg-black max-md:h-fit max-md:w-full max-md:justify-center">
-      <div className="flex md:flex-col max-2xl:items-center md:-2xl:w-fit w-full max-md:justify-around max-md:py-2 max-md:border-t border-white/20">
+      <div className="flex md:flex-col max-2xl:items-center md:max-2xl:w-fit w-full max-md:justify-around max-md:py-2 max-md:border-t border-white/20">
         <SideButton className="md:w-[50px] md:h-[50px] justify-center gap-0 md:mb-0.5">
           <h1 className="max-md:text-3xl md:text-4xl font-serif">Y</h1>
         </SideButton>
