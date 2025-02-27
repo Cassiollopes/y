@@ -8,7 +8,7 @@ export const buttonStyles = cva(
   {
     variants: {
       color: {
-        default: "text-white/95",
+        default: "text-default/95",
         pink: "hover:text-pink-600",
         sky: "hover:text-sky-600",
       },

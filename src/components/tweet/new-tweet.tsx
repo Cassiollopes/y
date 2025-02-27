@@ -114,7 +114,7 @@ export default function NewTweet({
             alt="Selected photo"
             width={500}
             height={500}
-            className="rounded-lg w-full h-fit border border-zinc-600/20 mt-2"
+            className="rounded-lg w-full h-fit border mt-2"
           />
           <ActionButton
             label="Remover"

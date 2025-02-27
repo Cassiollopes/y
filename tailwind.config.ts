@@ -11,10 +11,14 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        default: "white",
       },
       screens: {
         "2xl": "1400px",
-      }
+      },
+      borderColor: {
+        DEFAULT: "rgb(47, 51, 54)",
+      },
     },
   },
   plugins: [],

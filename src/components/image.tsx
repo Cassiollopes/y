@@ -30,7 +30,7 @@ export default function ImageUpload({ url }: { url: string }) {
 
   return (
     <div
-      className={`border w-full border-zinc-700/50 mt-3 rounded-2xl overflow-hidden  ${
+      className={`border w-full ""-700/50 mt-3 rounded-2xl overflow-hidden  ${
         imageUrl ? "" : "h-[502px]"
       }`}
     >
