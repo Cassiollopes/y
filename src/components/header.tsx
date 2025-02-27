@@ -21,7 +21,7 @@ export default function Header({
         setVisible(true);
       } else {
         if (direction < 0) {
-          if (pixelDifference >= 10 && Math.floor(pixelDifference) % 10 === 0) {
+          if (pixelDifference >= 7 && Math.floor(pixelDifference) % 7 === 0) {
             setVisible(true);
           }
         } else if (direction > 0) {
