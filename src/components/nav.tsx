@@ -14,7 +14,7 @@ import Link from "next/link";
 import NewTweetAbsolute from "./tweet/new-tweet-absolute";
 import { useMotionValueEvent, useScroll, motion } from "framer-motion";
 
-export default function SideBar({ user }: { user: User }) {
+export default function Nav({ user }: { user: User }) {
   const [showInput, setShowInput] = useState(false);
   const [showSignOut, setShowSignOut] = useState(false);
   const router = useRouter();
@@ -35,7 +35,7 @@ export default function SideBar({ user }: { user: User }) {
         setVisible(true);
       } else {
         if (direction < 0) {
-          if (pixelDifference >= 5 && Math.floor(pixelDifference) % 5 === 0) {
+          if (pixelDifference >= 10 && Math.floor(pixelDifference) % 10 === 0) {
             setVisible(true);
           }
         } else if (direction > 0) {

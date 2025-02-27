@@ -21,7 +21,7 @@ export default function Header({
         setVisible(true);
       } else {
         if (direction < 0) {
-          if (pixelDifference >= 5 && Math.floor(pixelDifference) % 5 === 0) {
+          if (pixelDifference >= 10 && Math.floor(pixelDifference) % 10 === 0) {
             setVisible(true);
           }
         } else if (direction > 0) {
@@ -35,7 +35,7 @@ export default function Header({
     <motion.div
       initial={{ opacity: 1 }}
       animate={window.innerWidth < 768 && { y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      transition={{ duration: 0.3 }}
       className={`sticky top-0 border-b px-4 border-zinc-700/75 w-full backdrop-blur-lg bg-black/70 z-50 flex justify-around ${props.className}`}
     >
       {props.children}
