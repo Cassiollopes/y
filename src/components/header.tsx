@@ -1,25 +1,15 @@
 "use client";
 
 import { useMotionValueEvent, useScroll, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 export default function Header({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   const [visible, setVisible] = useState(true);
   const { scrollYProgress } = useScroll();
-  const hasInteracted = useRef(false); // Flag para evitar o primeiro trigger
-
-  useEffect(() => {
-    hasInteracted.current = false; // Reset ao montar
-  }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
-    if (!hasInteracted.current) {
-      hasInteracted.current = true; // Ignora o primeiro trigger
-      return;
-    }
-
     if (typeof current === "number") {
       const previous = scrollYProgress.getPrevious();
       const direction = current - (previous || 0);
@@ -38,13 +28,9 @@ export default function Header({
     }
   });
 
-  useEffect(() => {
-    sessionStorage.setItem("visible", String(visible));
-  }, [visible]);
-
   return (
     <motion.div
-      initial={{ opacity: 1 }}
+      initial={{ opacity: 1, y: 0 }}
       animate={
         window.innerWidth < 768 && {
           y: visible ? 0 : -100,
