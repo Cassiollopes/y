@@ -16,15 +16,17 @@ export default function Header({
       const pixelHeight = window.innerHeight;
       const pixelDifference = Math.abs(direction * pixelHeight);
 
-      if (direction > 0) {
-        setVisible(false);
-      } else if (
-        direction < 0 &&
-        pixelDifference >= 5 &&
-        Math.floor(pixelDifference) % 5 === 0
-      ) {
-        setVisible(true);
-      }
+     if (scrollYProgress.get() === 0) {
+       setVisible(true);
+     } else {
+       if (direction < 0) {
+         if (pixelDifference >= 5 && Math.floor(pixelDifference) % 5 === 0) {
+           setVisible(true);
+         }
+       } else if (direction > 0) {
+         setVisible(false);
+       }
+     }
     }
   });
 
