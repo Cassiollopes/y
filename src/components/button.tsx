@@ -81,7 +81,7 @@ export function SubmitButton(
   return (
     <button
       {...props}
-      className={`${props.className} flex justify-center items-center bg-white/95 rounded-full px-5 p-2 text-black font-bold text disabled:opacity-50 hover:opacity-85 transition-all duration-200`}
+      className={`flex justify-center items-center bg-white/95 rounded-full px-5 p-2 text-black font-bold text disabled:opacity-50 hover:opacity-85 transition-all duration-200 ${props.className}`}
     >
       {props.children}
     </button>
