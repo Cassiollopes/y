@@ -52,7 +52,7 @@ export default function TweetList({ tweets, user }: TweetListProps) {
           <Tweet tweet={tweet} user={user} />
           <SubmitButton
             onClick={() => setShowInput(true)}
-            className="w-[50px] h-[50px] rounded-full shadow-sm shadow-white fixed bottom-16 right-6 md:hidden"
+            className="w-[55px] h-[55px] rounded-full shadow-md shadow-white/5 fixed bottom-20 right-5 md:hidden bg-sky-500 text-white"
           >
             <LuSend className="h-5 w-5 absolute" />
           </SubmitButton>

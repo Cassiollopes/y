@@ -24,7 +24,6 @@ export const buttonStyles = cva(
 );
 
 export default function ActionButton({
-  onClick,
   fill,
   icon,
   iconFill,
@@ -33,9 +32,8 @@ export default function ActionButton({
   disabled,
   label,
   fillLabel,
-  className,
-  children,
   contrast,
+  ...props
 }: VariantProps<typeof buttonStyles> & {
   onClick?: () => void;
   fill?: boolean;
@@ -44,15 +42,13 @@ export default function ActionButton({
   text?: number;
   label: string;
   fillLabel?: string;
-  className?: string;
-  children?: ReactNode;
   contrast?: boolean;
-}) {
+} & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       type="button"
-      onClick={onClick}
-      className={cn(buttonStyles({ color, disabled }), className)}
+      {...props}
+      className={cn(buttonStyles({ color, disabled }), props.className)}
     >
       <div className="absolute -bottom-8 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-none group-hover:delay-700 transition-opacity bg-slate-600/80 text-white/95 text-xs p-1 rounded py-0.5 shadow-lg truncate">
         {fill ? fillLabel : label}
@@ -74,7 +70,7 @@ export default function ActionButton({
         ></div>
       </div>
       <p className="text-xs">{text}</p>
-      {children}
+      {props.children}
     </button>
   );
 }
@@ -85,7 +81,7 @@ export function SubmitButton(
   return (
     <button
       {...props}
-      className={`flex justify-center items-center bg-white/95 rounded-full px-5 p-2 text-black font-bold text disabled:opacity-50 hover:opacity-85 transition-all duration-200 ${props.className}`}
+      className={`${props.className} flex justify-center items-center bg-white/95 rounded-full px-5 p-2 text-black font-bold text disabled:opacity-50 hover:opacity-85 transition-all duration-200`}
     >
       {props.children}
     </button>

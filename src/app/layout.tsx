@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased text-default/95`}>
+      <body className={`${inter.className} antialiased text-default/95 scroll-smooth`}>
         {children}
       </body>
     </html>
