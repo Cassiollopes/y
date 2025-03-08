@@ -52,9 +52,9 @@ export default function TweetList({ tweets, user }: TweetListProps) {
           <Tweet tweet={tweet} user={user} />
           <SubmitButton
             onClick={() => setShowInput(true)}
-            className="w-[55px] h-[55px] rounded-full shadow-md shadow-white/5 fixed bottom-20 right-5 md:hidden !bg-sky-500 text-white"
+            variant={"mobileIcon"}
           >
-            <LuSend className="h-5 w-5 absolute" />
+            <LuSend />
           </SubmitButton>
           {showInput && (
             <NewTweetAbsolute

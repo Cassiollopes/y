@@ -23,6 +23,23 @@ export const buttonStyles = cva(
   }
 );
 
+export const submitButtonStyles = cva(
+  "flex justify-center items-center rounded-full text-black font-bold disabled:opacity-50 hover:opacity-85 transition-all duration-200",
+  {
+    variants: {
+      variant: {
+        default: "px-5 p-2 bg-white/95",
+        mobileIcon:
+          "p-0 text-white/95 bg-sky-500 w-[50px] h-[50px] shadow-sm shadow-white/5 fixed bottom-16 right-6 md:hidden text-xl",
+        icon: "p-0 w-[50px] h-[50px]",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
+
 export default function ActionButton({
   fill,
   icon,
@@ -75,13 +92,15 @@ export default function ActionButton({
   );
 }
 
-export function SubmitButton(
-  props: React.ButtonHTMLAttributes<HTMLButtonElement>
-) {
+export function SubmitButton({
+  variant,
+  ...props
+}: VariantProps<typeof submitButtonStyles> &
+  React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       {...props}
-      className={`flex justify-center items-center bg-white/95 rounded-full px-5 p-2 text-black font-bold text disabled:opacity-50 hover:opacity-85 transition-all duration-200 ${props.className}`}
+      className={cn(submitButtonStyles({ variant }), props.className)}
     >
       {props.children}
     </button>

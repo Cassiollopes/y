@@ -60,9 +60,9 @@ export default function AnswersList({ tweet, user }: AnswerProps) {
         ))}
       <SubmitButton
         onClick={() => setShowInput(true)}
-        className="md:hidden w-[50px] h-[50px] rounded-full shadow-sm shadow-white fixed bottom-16 right-6 bg-red-400"
+        variant="mobileIcon"
       >
-        <BiMessage className="h-5 w-5 absolute" />
+        <BiMessage />
       </SubmitButton>
       {showInput && (
         <NewTweetAbsolute
