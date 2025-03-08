@@ -31,7 +31,7 @@ export default async function Home() {
 
   return (
     <div className="w-full">
-      <Header className="max-md:relative">
+      <Header className="max-md:relative max-md:border-none">
         <div className="h-full py-4 relative">
           <p className="font-bold text-sm">Para você</p>
           <div className="absolute bottom-0 bg-sky-500 h-1 w-full rounded-full"></div>
