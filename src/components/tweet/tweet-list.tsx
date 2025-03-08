@@ -44,7 +44,7 @@ export default function TweetList({ tweets, user }: TweetListProps) {
 
   return (
     <div>
-      <div>
+      <div className="max-md:hidden">
         <NewTweet user={user} />
       </div>
       {tweets.map((tweet) => (
