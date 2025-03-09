@@ -35,6 +35,7 @@ export default async function Layout({
           <div className="w-full border rounded-2xl p-4 py-3 flex flex-col gap-4 ">
             <p className="font-bold text-xl">Perfis</p>
             <Link
+              target="_blank"
               href="https://github.com/cassiollopes"
               className=" gap-3 flex items-center group hover:opacity-85 transition-all duration-200"
             >
