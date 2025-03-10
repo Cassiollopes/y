@@ -33,11 +33,12 @@ export default function Nav({ user }: { user: User }) {
   );
 
   return (
-    <div
-      className="flex max-2xl:justify-end md:py-1 xl:w-[15%] 2xl:w-[20%] max-md:bottom-0 max-md:left-0 sticky md:top-0 z-[100] max-md:bg-black max-md:h-fit max-md:w-full max-md:justify-center"
-    >
+    <div className="flex max-2xl:justify-end md:py-1 xl:w-[15%] 2xl:w-[20%] max-md:bottom-0 max-md:left-0 sticky md:top-0 z-[100] max-md:bg-black max-md:h-fit max-md:w-full max-md:justify-center">
       <div className="flex md:flex-col max-2xl:items-center md:max-2xl:w-fit w-full max-md:justify-around max-md:py-2 max-md:border-t drop-shadow-xl">
-        <SideButton className="md:w-[50px] md:h-[50px] justify-center gap-0 md:mb-0.5" link="/">
+        <SideButton
+          className="md:w-[50px] md:h-[50px] justify-center gap-0 md:mb-0.5"
+          link="/"
+        >
           <h1 className="max-md:text-3xl md:text-4xl font-serif">Y</h1>
         </SideButton>
         <SideButton
@@ -54,9 +55,7 @@ export default function Nav({ user }: { user: User }) {
           <p className="max-2xl:hidden">Postar</p>
           <LuSend className="2xl:hidden h-5 w-5 absolute" />
         </SubmitButton>
-        {showInput && (
-          <NewTweetAbsolute user={user} callback={handleHideInput} />
-        )}
+
         <div className="relative max-md:flex">
           <SideButton
             className="md:mt-4 2xl:w-full"
@@ -79,22 +78,23 @@ export default function Nav({ user }: { user: User }) {
             </div>
           </SideButton>
           {showSignOut && (
-            <div className="absolute max-md:right-0">
-              <div
-                onClick={() => setShowSignOut(false)}
-                className="fixed top-0 left-0 w-full h-full z-[100]"
-              ></div>
-              <button
-                onClick={signOut}
-                className="flex max-md:right-0 md:left-0 max-md:w-fit truncate max-md:-top-16 p-4 text-sm font-extrabold shadow-md rounded-2xl bg-background w-[300px] absolute z-[200] hover:bg-zinc-900"
-                style={{ boxShadow: "0px 0px 7px rgba(255, 255, 255, 0.5)" }}
-              >
-                Sair de {userName}
-              </button>
-            </div>
+            <button
+              onClick={signOut}
+              className="flex max-md:left-6 md:left-0 max-md:w-fit truncate max-md:-top-16 p-4 text-sm font-extrabold shadow-md rounded-2xl bg-background w-[300px] fixed md:absolute z-[200] hover:bg-zinc-900"
+              style={{ boxShadow: "0px 0px 7px rgba(255, 255, 255, 0.5)" }}
+            >
+              Sair de {userName}
+            </button>
           )}
         </div>
       </div>
+      {showInput && <NewTweetAbsolute user={user} callback={handleHideInput} />}
+      {showSignOut && (
+        <div
+          onClick={() => setShowSignOut(false)}
+          className="fixed top-0 left-0 w-full h-full z-[100]"
+        ></div>
+      )}
     </div>
   );
 }
@@ -120,16 +120,20 @@ export function SideButton({
       style={props.style}
     >
       <div
-        className={` ${
-          pathname === link ? "font-bold" : ""
-        } text-xl md:p-3 rounded-full md:group-hover:bg-white/10 transition-all duration-200 items-center flex w-fit ${
-          props.className
-        }`}
+        className={`text-xl md:p-3 rounded-full md:group-hover:bg-white/10 transition-all duration-200 items-center flex w-fit ${props.className}`}
         style={{ gap: props.style?.gap || "16px" }}
       >
         {pathname === link ? iconFill : icon}
         {props.children}
-        {label && <p className="pr-5 max-2xl:hidden">{label}</p>}
+        {label && (
+          <p
+            className={`${
+              pathname === link ? "font-bold" : ""
+            } pr-5 max-2xl:hidden`}
+          >
+            {label}
+          </p>
+        )}
       </div>
     </Link>
   ) : (

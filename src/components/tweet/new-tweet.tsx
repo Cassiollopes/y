@@ -24,12 +24,12 @@ export default function NewTweet({
   callback,
   answerOnTweet,
 }: NewTweetProps) {
-  
   const router = useRouter();
   const [text, setText] = useState<string | undefined>();
   const [photoFile, setPhotoFile] = useState<File | undefined>();
   const [showActions, setShowActions] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [posting, setPosting] = useState(false);
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {
@@ -38,6 +38,7 @@ export default function NewTweet({
   };
 
   const addTweet = async (formData: FormData) => {
+    setPosting(true);
     const supabase = createClient();
     const text = formData.get("text") as string;
 
@@ -78,9 +79,12 @@ export default function NewTweet({
         }
       }
     }
+    setPosting(false);
     setText(undefined);
+
     if (showActions) setShowActions(false);
     if (callback) return callback();
+
     router.refresh();
   };
 
@@ -154,11 +158,17 @@ export default function NewTweet({
           </div>
         )}
         <SubmitButton
-          disabled={!text && !photoFile}
+          disabled={(!text && !photoFile) || posting}
           formAction={addTweet}
           className="text-sm"
         >
-          {answer ? "Responder" : "Postar"}
+          {posting && !answer
+            ? "Postando..."
+            : answer && posting
+            ? "Respondendo..."
+            : answer
+            ? "Responder"
+            : "Postar"}
         </SubmitButton>
       </div>
     </form>
