@@ -48,23 +48,14 @@ export default function TweetList({ tweets, user }: TweetListProps) {
         <NewTweet user={user} />
       </div>
       {tweets.map((tweet) => (
-        <div key={tweet.id}>
-          <Tweet tweet={tweet} user={user} />
-          <SubmitButton
-            onClick={() => setShowInput(true)}
-            variant={"mobileIcon"}
-          >
-            <LuSend />
-          </SubmitButton>
-          {showInput && (
-            <NewTweetAbsolute
-              user={user}
-              tweet={tweet}
-              callback={() => setShowInput(false)}
-            />
-          )}
-        </div>
+        <Tweet key={tweet.id} tweet={tweet} user={user} />
       ))}
+      <SubmitButton onClick={() => setShowInput(true)} variant={"mobileIcon"}>
+        <LuSend />
+      </SubmitButton>
+      {showInput && (
+        <NewTweetAbsolute user={user} callback={() => setShowInput(false)} />
+      )}
     </div>
   );
 }
