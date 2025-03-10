@@ -56,44 +56,42 @@ export default function Nav({ user }: { user: User }) {
           <LuSend className="2xl:hidden h-5 w-5 absolute" />
         </SubmitButton>
 
-        <div className="relative max-md:flex">
-          <SideButton
-            className="md:mt-4 2xl:w-full"
-            onClick={() => setShowSignOut(true)}
-            style={{ gap: "8px" }}
-          >
-            <Image
-              src={user.user_metadata.avatar_url}
-              alt={user.id}
-              width={40}
-              height={40}
-              className="rounded-full w-[40px] h-[40px] max-md:h-[32px] max-md:w-[32px]"
-            />
-            <div className="w-full flex justify-between items-center max-2xl:hidden">
-              <div className="text-base flex flex-col items-start">
-                <p>{NameFormatter(user.user_metadata.name)}</p>
-                <p className="font-light text-zinc-500">{userName}</p>
-              </div>
-              <HiDotsHorizontal className="h-4 w-4" />
+        <SideButton
+          className="md:mt-4 2xl:w-full"
+          onClick={() => setShowSignOut(true)}
+          style={{ gap: "8px" }}
+        >
+          <Image
+            src={user.user_metadata.avatar_url}
+            alt={user.id}
+            width={40}
+            height={40}
+            className="rounded-full w-[40px] h-[40px] max-md:h-[32px] max-md:w-[32px]"
+          />
+          <div className="w-full flex justify-between items-center max-2xl:hidden">
+            <div className="text-base flex flex-col items-start">
+              <p>{NameFormatter(user.user_metadata.name)}</p>
+              <p className="font-light text-zinc-500">{userName}</p>
             </div>
-          </SideButton>
-          {showSignOut && (
-            <button
-              onClick={signOut}
-              className="flex max-md:left-6 md:left-0 max-md:w-fit truncate max-md:-top-16 p-4 text-sm font-extrabold shadow-md rounded-2xl bg-background w-[300px] fixed md:absolute z-[200] hover:bg-zinc-900"
-              style={{ boxShadow: "0px 0px 7px rgba(255, 255, 255, 0.5)" }}
-            >
-              Sair de {userName}
-            </button>
-          )}
-        </div>
+            <HiDotsHorizontal className="h-4 w-4" />
+          </div>
+        </SideButton>
       </div>
       {showInput && <NewTweetAbsolute user={user} callback={handleHideInput} />}
       {showSignOut && (
-        <div
-          onClick={() => setShowSignOut(false)}
-          className="fixed top-0 left-0 w-full h-full z-[100]"
-        ></div>
+        <>
+          <button
+            onClick={signOut}
+            className="flex max-md:left-6 md:left-0 max-md:w-fit truncate max-md:bottom-16 -bottom-12 p-4 text-sm font-extrabold shadow-md rounded-2xl bg-background w-[300px] fixed md:absolute z-[200] hover:bg-zinc-900"
+            style={{ boxShadow: "0px 0px 7px rgba(255, 255, 255, 0.5)" }}
+          >
+            Sair de {userName}
+          </button>
+          <div
+            onClick={() => setShowSignOut(false)}
+            className="fixed top-0 left-0 w-full h-full z-[100]"
+          ></div>
+        </>
       )}
     </div>
   );
