@@ -1,5 +1,4 @@
 import { User } from "@supabase/supabase-js";
-import { useEffect } from "react";
 import NewTweet from "./new-tweet";
 import Tweet from ".";
 import { TweetWithAuthor } from "@/utils/types";
@@ -19,9 +18,6 @@ export default function NewTweetAbsolute({
   tweet,
   callback,
 }: NewTweetAbsoluteProps) {
-  useEffect(() => {
-    document.body.classList.add("no-scroll");
-  }, []);
 
   return (
     <div

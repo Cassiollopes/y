@@ -22,6 +22,7 @@ export default function Answer({ tweet, user }: AnswerProps) {
 
   const handleAnswer = () => {
     setShowInput(true);
+    document.body.classList.add("no-scroll");
   };
 
   return (

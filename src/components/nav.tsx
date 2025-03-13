@@ -52,7 +52,10 @@ export default function Nav({ user }: { user: User }) {
           pathname={pathname}
         />
         <SubmitButton
-          onClick={() => setShowInput(true)}
+          onClick={() => {
+            setShowInput(true);
+            document.body.classList.add("no-scroll");
+          }}
           className="max-md:hidden bg-white 2xl:p-3.5 mt-2 rounded-full text-black font-bold w-[90%] max-2xl:w-[50px] max-2xl:h-[50px] relative"
         >
           <p className="max-2xl:hidden">Postar</p>
