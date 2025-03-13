@@ -1,5 +1,4 @@
 import { User } from "@supabase/supabase-js";
-import { useEffect } from "react";
 import NewTweet from "./new-tweet";
 import Tweet from ".";
 import { TweetWithAuthor } from "@/utils/types";
@@ -19,16 +18,12 @@ export default function NewTweetAbsolute({
   tweet,
   callback,
 }: NewTweetAbsoluteProps) {
-  useEffect(() => {
-    document.body.classList.add("no-scroll");
-  }, []);
 
   return (
     <div
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           callback();
-          document.body.classList.remove("no-scroll");
         }
       }}
       className="bg-slate-600/50 fixed top-0 left-0 w-full h-full z-[100] flex justify-center items-start md:pt-10"
@@ -37,7 +32,7 @@ export default function NewTweetAbsolute({
         <div className="md:hidden p-4">
           <ActionButton
             label="Fechar"
-            onClick={() => { callback(); document.body.classList.remove("no-scroll");} }
+            onClick={callback}
             icon={<BiArrowBack className="h-5 w-5" />}
           />
         </div>
