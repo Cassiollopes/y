@@ -20,18 +20,8 @@ export default function NewTweetAbsolute({
   callback,
 }: NewTweetAbsoluteProps) {
   useEffect(() => {
-    window.history.pushState({ modal: "open" }, "");
-
-    const handlePopState = () => {
-      callback();
-    };
-
-    window.addEventListener("popstate", handlePopState);
-
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, [callback]);
+    document.body.classList.add("no-scroll");
+  }, []);
 
   return (
     <div

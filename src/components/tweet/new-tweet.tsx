@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/client";
 import { User } from "@supabase/supabase-js";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsX } from "react-icons/bs";
 import { TbPhoto } from "react-icons/tb";
 import ActionButton, { SubmitButton } from "../button";
@@ -30,6 +30,13 @@ export default function NewTweet({
   const [showActions, setShowActions] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [posting, setPosting] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current  && callback) {
+      inputRef.current.focus();
+    }
+  }, [callback]);
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {
@@ -104,6 +111,7 @@ export default function NewTweet({
           className="rounded-full"
         />
         <input
+          ref={inputRef}
           onChange={(e) => setText(e.target.value)}
           name="text"
           placeholder={answer ? "Postar resposta" : "O que você está pensando?"}
