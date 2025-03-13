@@ -24,8 +24,8 @@ export default async function Layout({
   return (
     <div className="flex max-md:flex-col-reverse max-md:items-center max-md:mx-0 max-xl:mx-[4vw] min-h-screen max-w-[1260px] m-auto md:items-start xl:justify-start gap-2 xl:gap-3 relative">
       <Nav user={user} />
-      <div className="flex-1 flex gap-8 xl:max-w-[75vw] w-full min-h-[110vh]">
-        <div className="flex flex-col min-h-screen items-center w-full md:max-w-[602px] justify-start md:border-r md:border-l pb-8">
+      <div className="flex-1 flex gap-8 xl:max-w-[75vw] w-full">
+        <div className="flex flex-col min-h-[110vh] items-center w-full md:max-w-[602px] justify-start md:border-r md:border-l pb-8">
           {children}
         </div>
         <div className="pt-1.5 hidden lg:flex flex-1 sticky top-0 h-full gap-4 flex-col">

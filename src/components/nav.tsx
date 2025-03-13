@@ -39,7 +39,7 @@ export default function Nav({ user }: { user: User }) {
           className="md:w-[50px] md:h-[50px] justify-center gap-0 md:mb-0.5"
           link="/"
         >
-          <h1 className="max-md:text-3xl md:text-4xl font-serif">Y</h1>
+          <h1 className="max-md:text-3xl md:text-4xl font-serif font-extrabold">Y</h1>
         </SideButton>
         <SideButton
           label="Página Inicial"
