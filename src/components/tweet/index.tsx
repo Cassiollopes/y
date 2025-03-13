@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 
 interface TweetProps {
   tweet: TweetWithAuthor;
-  answers?: boolean;
+  answer?: boolean;
   answerTweet?: boolean;
   tweetWithAnswer?: boolean;
   user?: User;
@@ -25,7 +25,7 @@ interface TweetProps {
 
 export default function Tweet({
   tweet,
-  answers,
+  answer,
   answerTweet,
   tweetWithAnswer,
   user,
@@ -48,9 +48,11 @@ export default function Tweet({
         }
       }}
       key={tweet.id}
-      className={`flex gap-[6px] justify-start w-full hover:bg-white/[0.025] transition-all duration-200 ${
+      className={`flex gap-[6px] justify-start w-full  transition-all duration-200 ${
         tweetWithAnswer ? "border-t-0" : "cursor-pointer px-4 py-3"
-      } ${!answerTweet && !answers && "border-t"}  ""-700/75`}
+      } ${
+        !answerTweet && !answer && "border-t hover:bg-white/[0.025]"
+      } ${answer && "cursor-auto"}`}
     >
       {!tweetWithAnswer && (
         <div className="flex-1 max-w-[40px] flex flex-col items-center gap-1">
@@ -61,7 +63,7 @@ export default function Tweet({
             height={40}
             className="rounded-full w-[40px] h-[40px]"
           />
-          {answers && <div className="h-full w-[1.6px] bg-zinc-500/50"></div>}
+          {answer && <div className="h-full w-[1.6px] bg-zinc-500/50"></div>}
         </div>
       )}
       <div className="flex flex-col items-start flex-1 ">
@@ -94,13 +96,13 @@ export default function Tweet({
           </div>
         </div>
         {tweet.text && <p className={`leading-none`}>{tweet.text}</p>}
-        {tweet.image && !answers && <ImageUpload url={tweet.image} />}
+        {tweet.image && !answer && <ImageUpload url={tweet.image} />}
         {tweetWithAnswer && (
           <p className="text-zinc-500 font-light py-3">
             {FullDateFormatter(tweet.created_at)}
           </p>
         )}
-        {answers ? (
+        {answer ? (
           <div>
             <p className="text-zinc-500 pt-4">Respondendo {userName}</p>
           </div>
@@ -110,7 +112,7 @@ export default function Tweet({
               tweetWithAnswer && "md:py-3 border-t md:border-b md:mb-4  px-2"
             }`}
           >
-            <div className="w-1/5 no-click">
+            <div className="w-1/5 max-md:w-1/4 no-click">
               {user && <Answer tweet={tweet} user={user} />}
             </div>
             <div className="no-click">

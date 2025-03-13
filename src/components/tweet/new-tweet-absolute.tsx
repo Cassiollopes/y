@@ -4,6 +4,7 @@ import Tweet from ".";
 import { TweetWithAuthor } from "@/utils/types";
 import ActionButton from "../button";
 import { BiArrowBack } from "react-icons/bi";
+import { BsX } from "react-icons/bs";
 
 export interface NewTweetAbsoluteProps {
   user: User;
@@ -26,9 +27,16 @@ export default function NewTweetAbsolute({
           callback();
         }
       }}
-      className="bg-slate-600/50 fixed top-0 left-0 w-full h-full z-[100] flex justify-center items-start md:pt-10"
+      className="bg-slate-600/50 fixed top-0 left-0 w-screen h-screen z-[100] flex justify-center items-start md:pt-10"
     >
-      <div className="bg-black md:rounded-2xl w-2/5 max-md:w-full max-md:h-full">
+      <div className="bg-black md:rounded-2xl w-2/5 max-md:w-full max-md:h-full relative">
+        <div className="hidden md:flex absolute top-3 right-4">
+          <ActionButton
+            label="Fechar"
+            onClick={callback}
+            icon={<BsX className="h-5 w-5" />}
+          />
+        </div>
         <div className="md:hidden p-4">
           <ActionButton
             label="Fechar"
@@ -38,7 +46,7 @@ export default function NewTweetAbsolute({
         </div>
         {answer && tweet ? (
           <>
-            <Tweet user={user} tweet={tweet} answers={true} />
+            <Tweet user={user} tweet={tweet} answer={true} />
             <NewTweet
               user={user}
               answer={true}
