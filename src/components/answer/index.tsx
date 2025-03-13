@@ -17,12 +17,10 @@ export default function Answer({ tweet, user }: AnswerProps) {
 
   const handleHideInput = () => {
     setShowInput(false);
-    document.body.classList.remove("no-scroll");
   };
 
   const handleAnswer = () => {
     setShowInput(true);
-    document.body.classList.add("no-scroll");
   };
 
   return (

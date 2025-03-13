@@ -21,7 +21,6 @@ export default function Nav({ user }: { user: User }) {
 
   const handleHideInput = () => {
     setShowInput(false);
-    document.body.classList.remove("no-scroll");
   };
 
   const signOut = async () => {
@@ -40,9 +39,7 @@ export default function Nav({ user }: { user: User }) {
           className="md:w-[50px] md:h-[50px] justify-center gap-0 md:mb-0.5"
           link="/"
         >
-          <h1 className="max-md:text-3xl md:text-4xl font-serif font-extrabold">
-            Y
-          </h1>
+          <h1 className="max-md:text-3xl md:text-4xl font-serif font-extrabold">Y</h1>
         </SideButton>
         <SideButton
           label="Página Inicial"
@@ -52,10 +49,7 @@ export default function Nav({ user }: { user: User }) {
           pathname={pathname}
         />
         <SubmitButton
-          onClick={() => {
-            setShowInput(true);
-            document.body.classList.add("no-scroll");
-          }}
+          onClick={() => setShowInput(true)}
           className="max-md:hidden bg-white 2xl:p-3.5 mt-2 rounded-full text-black font-bold w-[90%] max-2xl:w-[50px] max-2xl:h-[50px] relative"
         >
           <p className="max-2xl:hidden">Postar</p>
