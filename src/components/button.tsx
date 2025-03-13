@@ -30,7 +30,7 @@ export const submitButtonStyles = cva(
       variant: {
         default: "px-5 py-2 bg-white/95",
         mobileIcon:
-          "text-white/95 bg-sky-500 w-[50px] h-[50px] shadow-md shadow-white/20 fixed bottom-16 right-6 md:hidden text-xl",
+          "text-white/95 bg-sky-500 w-[56px] h-[56px] shadow-md shadow-white/20 fixed bottom-16 mb-2 right-5 md:hidden text-xl",
         icon: "w-[50px] h-[50px]",
       },
     },
