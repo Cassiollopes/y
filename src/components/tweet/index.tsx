@@ -90,7 +90,7 @@ export default function Tweet({
               <p>{name}</p>
               <BsPatchCheckFill className="fill-sky-500" />
             </div>
-            <p className="text-zinc-400/80 font-light">
+            <p className="text-zinc-400/80 font-extralight">
               {userName} {!tweetWithAnswer && `· ${createdAt}`}
             </p>
           </div>
