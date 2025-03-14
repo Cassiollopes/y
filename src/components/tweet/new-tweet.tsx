@@ -115,7 +115,7 @@ export default function NewTweet({
           onChange={(e) => setText(e.target.value)}
           name="text"
           placeholder={answer ? "Postar resposta" : "O que você está pensando?"}
-          className="bg-transparent border-none outline-none text-xl max-md:text-lg placeholder-zinc-500"
+          className="flex-1 bg-transparent border-none outline-none text-xl max-md:text-lg placeholder-zinc-500"
           autoComplete="off"
         />
       </div>

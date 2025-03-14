@@ -69,7 +69,7 @@ export default function Nav({ user }: { user: User }) {
             className="rounded-full w-[40px] h-[40px] max-md:h-[32px] max-md:w-[32px]"
           />
           <div className="w-full flex justify-between items-center max-2xl:hidden">
-            <div className="text-base flex flex-col items-start">
+            <div className="text-[15px] flex flex-col items-start leading-5">
               <p>{NameFormatter(user.user_metadata.name)}</p>
               <p className="font-light text-zinc-500">{userName}</p>
             </div>
