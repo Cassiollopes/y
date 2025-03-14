@@ -5,6 +5,7 @@ import { TweetWithAuthor } from "@/utils/types";
 import ActionButton from "../button";
 import { BiArrowBack } from "react-icons/bi";
 import { BsX } from "react-icons/bs";
+import { useEffect } from "react";
 
 export interface NewTweetAbsoluteProps {
   user: User;
@@ -19,12 +20,16 @@ export default function NewTweetAbsolute({
   tweet,
   callback,
 }: NewTweetAbsoluteProps) {
-
+  useEffect(() => {
+    document.documentElement.style.overflow = "hidden";
+    document.documentElement.style.scrollbarGutter = "stable";
+  }, []);
   return (
     <div
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           callback();
+          document.documentElement.style.overflow = "auto";
         }
       }}
       className="bg-slate-600/50 fixed top-0 left-0 w-screen h-screen z-[100] flex justify-center items-start md:pt-10"
@@ -33,14 +38,20 @@ export default function NewTweetAbsolute({
         <div className="hidden md:flex absolute top-3 right-4">
           <ActionButton
             label="Fechar"
-            onClick={callback}
+            onClick={() => {
+              callback();
+              document.documentElement.style.overflow = "auto";
+            }}
             icon={<BsX className="h-5 w-5" />}
           />
         </div>
         <div className="md:hidden p-4">
           <ActionButton
             label="Fechar"
-            onClick={callback}
+            onClick={() => {
+              callback();
+              document.documentElement.style.overflow = "auto";
+            }}
             icon={<BiArrowBack className="h-5 w-5" />}
           />
         </div>

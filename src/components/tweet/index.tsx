@@ -50,9 +50,9 @@ export default function Tweet({
       key={tweet.id}
       className={`flex gap-[6px] justify-start w-full  transition-all duration-200 ${
         tweetWithAnswer ? "border-t-0" : "cursor-pointer px-4 py-3"
-      } ${
-        !answerTweet && !answer && "border-t hover:bg-white/[0.025]"
-      } ${answer && "cursor-auto"}`}
+      } ${!answerTweet && !answer && "border-t hover:bg-white/[0.025]"} ${
+        answer && "cursor-auto"
+      }`}
     >
       {!tweetWithAnswer && (
         <div className="flex-1 max-w-[40px] flex flex-col items-center gap-1">
@@ -104,7 +104,9 @@ export default function Tweet({
         )}
         {answer ? (
           <div>
-            <p className="text-zinc-500 pt-4">Respondendo {userName}</p>
+            <p className="text-zinc-500 pt-4">
+              Respondendo <span className="text-sky-500">{userName}</span>
+            </p>
           </div>
         ) : (
           <div

@@ -39,7 +39,7 @@ export default function AnswersList({ tweet, user }: AnswerProps) {
 
   return (
     <div key={tweet.id}>
-      <div className="p-4 md:pb-6 pt-1">
+      <div className="px-4 md:pb-6 pt-2">
         <Tweet tweet={tweet} user={user} tweetWithAnswer={true} />
         <div className="max-md:hidden w-full">
           <NewTweet

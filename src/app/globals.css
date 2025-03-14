@@ -41,8 +41,3 @@ html {
     -ms-overflow-style: none;
   }
 }
-
-.no-scroll {
-  overflow: hidden;
-  height: 100vh;
-}
