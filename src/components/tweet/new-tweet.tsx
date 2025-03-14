@@ -102,7 +102,7 @@ export default function NewTweet({
       } ${(showActions || !answerOnTweet) && " flex-col"}`}
       onClick={answerOnTweet ? () => setShowActions(true) : undefined}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
         <Image
           src={user.user_metadata.avatar_url}
           alt={user.id}

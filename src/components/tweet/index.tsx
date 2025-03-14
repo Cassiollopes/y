@@ -48,7 +48,7 @@ export default function Tweet({
         }
       }}
       key={tweet.id}
-      className={`flex gap-[6px] justify-start w-full  transition-all duration-200 ${
+      className={`flex gap-[6px] justify-start w-full  transition-all duration-200 text-[15px] ${
         tweetWithAnswer ? "border-t-0" : "cursor-pointer px-4 py-3"
       } ${!answerTweet && !answer && "border-t hover:bg-white/[0.025]"} ${
         answer && "cursor-auto"
@@ -83,14 +83,14 @@ export default function Tweet({
             className={`flex gap-1 pt-0.5 leading-none ${
               tweetWithAnswer
                 ? "flex-col pb-3"
-                : "pb-1.5 md:items-center md:gap-2 "
+                : "pb-1.5 md:items-end md:gap-1.5 "
             } max-md:flex-col`}
           >
-            <div className="font-bold flex items-center gap-1">
-              <p>{name}</p>
-              <BsPatchCheckFill className="fill-sky-500" />
+            <div className="flex items-end gap-0.5">
+              <p className="font-bold">{name}</p>
+              <BsPatchCheckFill className="fill-sky-500 h-4 w-4" />
             </div>
-            <p className="text-zinc-400/80 font-extralight">
+            <p className="text-zinc-400/90 font-extralight">
               {userName} {!tweetWithAnswer && `· ${createdAt}`}
             </p>
           </div>
