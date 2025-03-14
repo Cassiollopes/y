@@ -66,7 +66,7 @@ export default function Tweet({
           {answer && <div className="h-full w-[1.6px] bg-zinc-500/50"></div>}
         </div>
       )}
-      <div className="flex flex-col items-start flex-1 ">
+      <div className="flex flex-col items-start flex-1 w-full">
         <div className="flex gap-2">
           {tweetWithAnswer && (
             <div className="flex-1 max-w-[40px] flex flex-col items-center gap-1">
@@ -84,15 +84,16 @@ export default function Tweet({
               tweetWithAnswer
                 ? "flex-col pb-3"
                 : "pb-1.5 md:items-end md:gap-1.5 "
-            } max-md:flex-col`}
+            }`}
           >
             <div className="flex items-end gap-0.5">
-              <p className="font-bold">{name}</p>
+              <p className="font-bold truncate max-w-[100px]">{name}</p>
               <BsPatchCheckFill className="fill-sky-500 h-4 w-4" />
             </div>
-            <p className="text-zinc-400/90 font-extralight">
-              {userName} {!tweetWithAnswer && `· ${createdAt}`}
-            </p>
+            <div className="text-zinc-400/90 font-extralight flex">
+              <p className=" truncate max-w-[100px]">{userName}&nbsp;</p>
+              {!tweetWithAnswer && `· ${createdAt}`}
+            </div>
           </div>
         </div>
         {tweet.text && <p className={`leading-none`}>{tweet.text}</p>}
