@@ -23,6 +23,11 @@ export default function NewTweetAbsolute({
   useEffect(() => {
     document.documentElement.style.overflow = "hidden";
     document.documentElement.style.scrollbarGutter = "stable";
+
+    return () => {
+      document.documentElement.style.overflow = "auto";
+      document.documentElement.style.scrollbarGutter = "auto";
+    };
   }, []);
   return (
     <div
