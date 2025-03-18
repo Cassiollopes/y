@@ -55,7 +55,7 @@ export default function Tweet({
       }`}
     >
       {!tweetWithAnswer && (
-        <div className="flex-1 max-w-[40px] flex flex-col items-center gap-1">
+        <div className="flex-1 min-w-[40px] max-w-[40px] flex flex-col items-center gap-1">
           <Image
             src={tweet.author.avatar_url}
             alt={name}
@@ -67,9 +67,9 @@ export default function Tweet({
         </div>
       )}
       <div className="flex flex-col items-start flex-1 w-full">
-        <div className="flex gap-2">
+        <div className="flex gap-2 w-full">
           {tweetWithAnswer && (
-            <div className="flex-1 max-w-[40px] flex flex-col items-center gap-1">
+            <div className="flex-1 min-w-[40px] max-w-[40px] flex flex-col items-center gap-1">
               <Image
                 src={tweet.author.avatar_url}
                 alt={name}
@@ -80,18 +80,18 @@ export default function Tweet({
             </div>
           )}
           <div
-            className={`flex gap-1 pt-0.5 leading-none ${
+            className={`flex gap-1 pt-0.5 leading-none w-full max-[360px]:flex-wrap ${
               tweetWithAnswer
                 ? "flex-col pb-3"
                 : "pb-1.5 md:items-end md:gap-1.5 "
             }`}
           >
-            <div className="flex items-end gap-0.5">
-              <p className="font-bold truncate max-w-[100px]">{name}</p>
+            <div className="flex items-end gap-0.5 max-w-full overflow-hidden">
+              <p className="font-bold truncate min-w-0 flex-1">{name}</p>
               <BsPatchCheckFill className="fill-sky-500 h-4 w-4" />
             </div>
             <div className="text-zinc-400/90 font-extralight flex">
-              <p className=" truncate max-w-[100px]">{userName}&nbsp;</p>
+              <p className="truncate min-w-0 flex-1">{userName}&nbsp;</p>
               {!tweetWithAnswer && `· ${createdAt}`}
             </div>
           </div>
