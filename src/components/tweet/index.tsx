@@ -80,7 +80,7 @@ export default function Tweet({
             </div>
           )}
           <div
-            className={`flex gap-1 pt-0.5 leading-none w-full ${
+            className={`flex gap-1 pt-0.5 leading-none w-full max-[359px]:flex-wrap ${
               tweetWithAnswer
                 ? "flex-col pb-3"
                 : "pb-1.5 md:items-end md:gap-1.5 "
