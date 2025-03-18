@@ -87,7 +87,13 @@ export default function Tweet({
             }`}
           >
             <div className="flex items-end gap-0.5 max-w-full overflow-hidden">
-              <p className="font-bold truncate min-w-0 flex-1">{name}</p>
+              <p
+                className={`font-bold truncate min-w-0 flex-1 ${
+                  tweetWithAnswer && "flex-none"
+                }`}
+              >
+                {name}
+              </p>
               <BsPatchCheckFill className="fill-sky-500 h-4 w-4" />
             </div>
             <div className="text-zinc-400/90 font-extralight flex">
