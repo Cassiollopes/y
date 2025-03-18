@@ -20,10 +20,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, viewport-fit=cover"
-      />
       <body
         className={`${inter.className} antialiased text-default/95 scroll-smooth`}
       >
