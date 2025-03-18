@@ -56,7 +56,7 @@ export default function NewTweetAbsolute({
           />
         </div>
         {answer && tweet ? (
-          <>
+          <div className="max-md:absolute left-0 w-full">
             <Tweet user={user} tweet={tweet} answer={true} />
             <NewTweet
               user={user}
@@ -64,7 +64,7 @@ export default function NewTweetAbsolute({
               tweetId={tweet.id}
               callback={callback}
             />
-          </>
+          </div>
         ) : (
           <NewTweet user={user} callback={callback} />
         )}
