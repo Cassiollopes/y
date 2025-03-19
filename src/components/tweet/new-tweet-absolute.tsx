@@ -46,7 +46,7 @@ export default function NewTweetAbsolute({
       document.documentElement.style.scrollbarGutter = "auto";
       window.removeEventListener("popstate", handlePopState);
     };
-  }, []);
+  }, [callback]);
 
   return (
     <div
