@@ -31,12 +31,7 @@ export default function NewTweet({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [posting, setPosting] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (inputRef.current  && callback) {
-      inputRef.current.focus();
-    }
-  }, [callback]);
+  const maxChars = 200; // Limite máximo de caracteres
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {
@@ -87,6 +82,9 @@ export default function NewTweet({
       }
     }
     setPosting(false);
+    if (inputRef.current) {
+      inputRef.current.textContent = ""; // Limpa visualmente
+    }
     setText(undefined);
 
     if (showActions) setShowActions(false);
@@ -95,6 +93,41 @@ export default function NewTweet({
     router.refresh();
   };
 
+  useEffect(() => {
+    if (inputRef.current && callback) {
+      inputRef.current.focus();
+    }
+  }, [callback]);
+
+  useEffect(() => {
+    const div = inputRef.current;
+    if (div && text && text.length > 200) {
+      const normalText = text.slice(0, 200);
+      const excessText = text.slice(200);
+      div.innerHTML = `${normalText}<span style="background: rgb(255, 0, 0, 0.5);">${excessText}</span>`;
+      // Restaurar a posição do cursor no final
+      const range = document.createRange();
+      const sel = window.getSelection();
+      range.selectNodeContents(div);
+      range.collapse(false); // Coloca o cursor no final
+      if (sel) {
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    }
+  }, [text]);
+
+  const percentage = text ? (text.length / maxChars) * 100 : 0;
+
+  // Calcula a circunferência do círculo (2 * π * raio)
+  const radius = 12; // Raio do círculo em pixels
+  const circumference = 2 * Math.PI * radius;
+
+  // Calcula o comprimento da borda a ser preenchida
+  const strokeDash = (percentage / 100) * circumference;
+  const finalStrokeDash =
+    (text?.length ?? 0) > 200 ? circumference : strokeDash;
+
   return (
     <form
       className={`flex w-full justify-between ${
@@ -102,7 +135,7 @@ export default function NewTweet({
       } ${(showActions || !answerOnTweet) && " flex-col"}`}
       onClick={answerOnTweet ? () => setShowActions(true) : undefined}
     >
-      <div className="flex items-center gap-2">
+      <div className="flex items-start gap-2">
         <Image
           src={user.user_metadata.avatar_url}
           alt={user.id}
@@ -110,15 +143,24 @@ export default function NewTweet({
           height={40}
           className="rounded-full"
         />
-        <input
+        <div
           ref={inputRef}
-          onChange={(e) => setText(e.target.value)}
-          name="text"
-          placeholder={answer ? "Postar resposta" : "O que você está pensando?"}
-          className="flex-1 bg-transparent border-none outline-none text-xl max-md:text-lg placeholder-zinc-500"
-          autoComplete="off"
+          contentEditable="true"
+          onInput={(e) => {
+            const content = (e.target as HTMLDivElement).textContent || "";
+            setText(content);
+            if (content === "") {
+              (e.target as HTMLDivElement).innerHTML = "";
+            }
+          }}
+          data-placeholder={
+            answer ? "Postar resposta" : "O que você está pensando?"
+          }
+          className="py-1 flex-1 bg-transparent border-none outline-none text-xl max-md:text-lg placeholder-zinc-500 empty:before:content-[attr(data-placeholder)] empty:before:text-zinc-500 whitespace-pre-wrap break-words overflow-hidden leading-tight"
         />
       </div>
+      <input type="hidden" name="text" value={text ?? ""} />
+
       {photoFile && (
         <div className="relative w-full pl-[52px] max-h-[60vh] overflow-hidden">
           <Image
@@ -140,11 +182,11 @@ export default function NewTweet({
       <div
         className={` ${
           (showActions || !answerOnTweet) &&
-          "flex w-full items-center justify-between pl-[52px] pt-4"
+          "flex w-full items-center justify-end pl-[48px] pt-4 gap-2"
         }`}
       >
         {(showActions || !answerOnTweet) && (
-          <div>
+          <div className="mr-auto">
             <ActionButton
               color={"sky"}
               icon={<TbPhoto className="text-sky-500 h-5 w-5" />}
@@ -165,8 +207,60 @@ export default function NewTweet({
             />
           </div>
         )}
+        {(text?.length ?? 0) > 0 && (
+          <div className="flex items-center gap-2 relative justify-center w-fit">
+            <div
+              className={`relative w-7 h-7 ${
+                (text?.length ?? 0) > 180 && "w-9 h-9"
+              }`}
+            >
+              <svg className="w-full h-full" viewBox="0 0 32 32">
+                {/* Círculo de fundo cinza */}
+                <circle
+                  cx="16"
+                  cy="16"
+                  r={radius}
+                  fill="none"
+                  stroke="rgba(255, 255, 255, 0.25)"
+                  strokeWidth="2"
+                />
+                {/* Círculo azul que preenche */}
+                <circle
+                  cx="16"
+                  cy="16"
+                  r={radius}
+                  fill="none"
+                  stroke={`${
+                    (text?.length ?? 0) > 200
+                      ? "rgba(255, 0, 0, 0.5)"
+                      : (text?.length ?? 0) > 180
+                      ? "rgba(255, 255, 0, 0.5)"
+                      : "#3b82f6"
+                  }`}
+                  strokeWidth="2"
+                  strokeDasharray={`${circumference} ${circumference}`}
+                  strokeDashoffset={circumference - finalStrokeDash}
+                  className="transform -rotate-90 origin-center transition-all duration-300"
+                />
+              </svg>
+            </div>
+            {text && text.length > 180 && (
+              <p
+                className={`text-xs text-zinc-500 absolute ${
+                  text.length > 200 ? "text-red-500" : ""
+                }`}
+              >
+                {maxChars - (text?.length ?? 0)}
+              </p>
+            )}
+          </div>
+        )}
         <SubmitButton
-          disabled={(!text && !photoFile) || posting}
+          disabled={
+            (!text && !photoFile) ||
+            posting ||
+            (text != undefined && text.length > 200)
+          }
           formAction={addTweet}
           className="text-sm"
         >

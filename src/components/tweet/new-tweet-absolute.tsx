@@ -24,11 +24,26 @@ export default function NewTweetAbsolute({
     document.documentElement.style.overflow = "hidden";
     document.documentElement.style.scrollbarGutter = "stable";
 
+    // Adiciona um estado ao histórico
+    window.history.pushState({ page: "your-page" }, "");
+
+    const handlePopState = () => {
+      // Adiciona novamente o estado ao histórico quando voltar é pressionado
+      window.history.pushState({ page: "your-page" }, "");
+
+      // Implementa o comportamento desejado em vez de voltar
+      console.log("Botão voltar pressionado");
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
     return () => {
       document.documentElement.style.overflow = "auto";
       document.documentElement.style.scrollbarGutter = "auto";
+      window.removeEventListener("popstate", handlePopState);
     };
   }, []);
+
   return (
     <div
       onClick={(e) => {

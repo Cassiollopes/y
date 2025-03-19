@@ -48,14 +48,14 @@ export default function Tweet({
         }
       }}
       key={tweet.id}
-      className={`flex gap-[6px] justify-start w-full  transition-all duration-200 text-[15px] ${
+      className={`flex gap-[6px] justify-start w-full transition-all duration-200 text-[15px] ${
         tweetWithAnswer ? "border-t-0" : "cursor-pointer px-4 py-3"
       } ${!answerTweet && !answer && "border-t hover:bg-white/[0.025]"} ${
         answer && "cursor-auto"
       }`}
     >
       {!tweetWithAnswer && (
-        <div className="flex-1 min-w-[40px] max-w-[40px] flex flex-col items-center gap-1">
+        <div className="min-w-[40px] max-w-[40px] flex flex-col items-center gap-1">
           <Image
             src={tweet.author.avatar_url}
             alt={name}
@@ -66,18 +66,16 @@ export default function Tweet({
           {answer && <div className="h-full w-[1.6px] bg-zinc-500/50"></div>}
         </div>
       )}
-      <div className="flex flex-col items-start flex-1 w-full">
+      <div className="flex flex-col items-start flex-1 min-w-0">
         <div className="flex gap-2 w-full">
           {tweetWithAnswer && (
-            <div className="flex-1 min-w-[40px] max-w-[40px] flex flex-col items-center gap-1">
-              <Image
-                src={tweet.author.avatar_url}
-                alt={name}
-                width={40}
-                height={40}
-                className="rounded-full w-[40px] h-[40px]"
-              />
-            </div>
+            <Image
+              src={tweet.author.avatar_url}
+              alt={name}
+              width={40}
+              height={40}
+              className="rounded-full w-[40px] h-[40px]"
+            />
           )}
           <div
             className={`flex gap-1 pt-0.5 leading-none w-full max-[359px]:flex-wrap ${
@@ -102,7 +100,9 @@ export default function Tweet({
             </div>
           </div>
         </div>
-        {tweet.text && <p className={`leading-none`}>{tweet.text}</p>}
+        {tweet.text && (
+          <p className={`leading-none break-words w-full`}>{tweet.text}</p>
+        )}
         {tweet.image && !answer && <ImageUpload url={tweet.image} />}
         {tweetWithAnswer && (
           <p className="text-zinc-500 font-light py-3">
