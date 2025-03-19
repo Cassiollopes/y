@@ -31,8 +31,6 @@ export default function NewTweetAbsolute({
       // Adiciona novamente o estado ao histórico quando voltar é pressionado
       window.history.back();
 
-      // Implementa o comportamento desejado em vez de voltar
-      callback();
     };
 
     window.addEventListener("popstate", handlePopState);
