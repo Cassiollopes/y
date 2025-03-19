@@ -67,7 +67,7 @@ export default function ActionButton({
       {...props}
       className={cn(buttonStyles({ color, disabled }), props.className)}
     >
-      <div className="absolute -bottom-8 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-none group-hover:delay-700 transition-opacity bg-slate-600/80 text-white/95 text-xs p-1 rounded py-0.5 shadow-lg truncate">
+      <div className="absolute -bottom-8 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-none group-hover:delay-700 transition-opacity bg-slate-600/80 text-white/95 text-xs p-1 rounded-sm py-0.5 shadow-lg truncate">
         {fill ? fillLabel : label}
       </div>
       <div className="flex justify-center items-center relative">
