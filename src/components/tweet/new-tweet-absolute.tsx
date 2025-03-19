@@ -27,14 +27,12 @@ export default function NewTweetAbsolute({
     // Adiciona um estado ao histórico
     window.history.pushState({ page: "your-page" }, "");
 
-    const handlePopState = (event: PopStateEvent) => {
-      if (event.state && event.state.page === "your-page") {
-        // Executa o comportamento desejado sem adicionar um novo estado
-        callback();
+    const handlePopState = () => {
+      // Adiciona novamente o estado ao histórico quando voltar é pressionado
+      window.history.pushState({ page: "your-page" }, "");
 
-        // Opcional: Se você quer manter o usuário na mesma "página",
-        // pode evitar a navegação padrão sem pushState adicional
-      }
+      // Implementa o comportamento desejado em vez de voltar
+      callback();
     };
 
     window.addEventListener("popstate", handlePopState);
