@@ -24,6 +24,10 @@ export default function NewTweetAbsolute({
     document.documentElement.style.overflow = "hidden";
     document.documentElement.style.scrollbarGutter = "stable";
 
+    if (window.innerWidth < 768) {
+      window.scrollTo(0, 0);
+    }
+
     // Adiciona um estado ao histórico
     window.history.pushState({ page: "your-page" }, "");
 
