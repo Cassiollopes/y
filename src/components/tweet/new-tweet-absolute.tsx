@@ -29,8 +29,10 @@ export default function NewTweetAbsolute({
 
     const handlePopState = () => {
       // Adiciona novamente o estado ao histórico quando voltar é pressionado
-      window.history.back();
+      window.history.pushState({ page: "your-page" }, "");
 
+      // Implementa o comportamento desejado em vez de voltar
+      callback();
     };
 
     window.addEventListener("popstate", handlePopState);
