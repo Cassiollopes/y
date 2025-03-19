@@ -32,7 +32,7 @@ export default function NewTweetAbsolute({
       window.history.pushState({ page: "your-page" }, "");
 
       // Implementa o comportamento desejado em vez de voltar
-      console.log("Botão voltar pressionado");
+      callback();
     };
 
     window.addEventListener("popstate", handlePopState);
