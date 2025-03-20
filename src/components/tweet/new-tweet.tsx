@@ -239,7 +239,7 @@ export default function NewTweet({
                       ? "rgba(255, 0, 0, 0.5)"
                       : (text?.length ?? 0) > 180
                       ? "rgba(255, 255, 0, 0.5)"
-                      : "#3b82f6"
+                      : "rgb(29, 155, 240)"
                   }`}
                   strokeWidth="2"
                   strokeDasharray={`${circumference} ${circumference}`}
