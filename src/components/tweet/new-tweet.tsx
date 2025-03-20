@@ -162,7 +162,7 @@ export default function NewTweet({
       <input type="hidden" name="text" value={text ?? ""} />
 
       {photoFile && (
-        <div className="relative rounded-2xl mt-2 min-flex-1 ml-[48px] max-h-[70vh] overflow-hidden">
+        <div className="relative rounded-2xl mt-2 min-flex-1 ml-[48px] max-md:max-h-[50vh] max-h-[70vh] overflow-hidden">
           <Image
             src={URL.createObjectURL(photoFile)}
             alt="Selected photo"
