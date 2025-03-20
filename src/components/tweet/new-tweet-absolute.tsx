@@ -24,12 +24,6 @@ export default function NewTweetAbsolute({
     document.documentElement.style.overflow = "hidden";
     document.documentElement.style.scrollbarGutter = "stable";
 
-    if (window.screen.width < 768) {
-      document.documentElement.style.overflow = "auto";
-      document.documentElement.style.scrollbarGutter = "auto";
-    }
-
-    window.addEventListener("popstate", callback);
 
     return () => {
       document.documentElement.style.overflow = "auto";
@@ -45,7 +39,7 @@ export default function NewTweetAbsolute({
           document.documentElement.style.overflow = "auto";
         }
       }}
-      className="pt-[env(safe-area-inset-top)] bg-slate-600/50 fixed inset-0 w-screen min-h-screen z-[100] flex justify-center items-start md:pt-10 max-md:bg-black"
+      className="pt-[env(safe-area-inset-top)] bg-slate-600/50 fixed inset-0 w-screen h-screen z-[100] flex justify-center items-start md:pt-10 max-md:bg-black"
     >
       <div className="bg-black md:rounded-2xl w-2/5 max-md:w-full max-md:h-fit relative">
         <div className="hidden md:flex absolute top-3 right-4">
