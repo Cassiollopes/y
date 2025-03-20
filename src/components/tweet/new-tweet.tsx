@@ -132,7 +132,9 @@ export default function NewTweet({
     <form
       className={`flex w-full justify-between ${
         answerOnTweet ? "p-0" : "px-4 py-3 pt-4"
-      } ${(showActions || !answerOnTweet) && " flex-col"} ${answer ? "pt-1" : ""}`}
+      } ${(showActions || !answerOnTweet) && " flex-col"} ${
+        answer ? "pt-1" : ""
+      }`}
       onClick={answerOnTweet ? () => setShowActions(true) : undefined}
     >
       <div className="flex items-start gap-2 w-full">
@@ -156,7 +158,9 @@ export default function NewTweet({
           data-placeholder={
             answer ? "Postar resposta" : "O que você está pensando?"
           }
-          className={`py-1 flex-1 bg-transparent border-none outline-none text-xl max-md:text-lg placeholder-zinc-500 empty:before:content-[attr(data-placeholder)] empty:before:text-zinc-500 whitespace-pre-wrap break-words overflow-hidden leading-tight ${callback && "min-h-[96px]"} cursor-text`}
+          className={`py-1 flex-1 bg-transparent border-none outline-none text-xl max-md:text-lg placeholder-zinc-500 empty:before:content-[attr(data-placeholder)] empty:before:text-zinc-500 whitespace-pre-wrap break-words overflow-hidden leading-tight ${
+            callback && "min-h-[96px]"
+          } cursor-text`}
         />
       </div>
       <input type="hidden" name="text" value={text ?? ""} />
@@ -262,7 +266,7 @@ export default function NewTweet({
             (text != undefined && text.length > 200)
           }
           formAction={addTweet}
-          className="text-sm"
+          className={`text-sm ${callback ? "max-md:hidden" : ""}`}
         >
           {posting && !answer
             ? "Postando..."
@@ -272,6 +276,25 @@ export default function NewTweet({
             ? "Responder"
             : "Postar"}
         </SubmitButton>
+      </div>
+      <div className="md:hidden">
+        <button
+          disabled={
+            (!text && !photoFile) ||
+            posting ||
+            (text != undefined && text.length > 200)
+          }
+          formAction={addTweet}
+          className="text-xs bg-sky-500 font-bold rounded-full px-3 py-1.5 fixed top-3 right-4 disabled:opacity-50"
+        >
+          {posting && !answer
+            ? "Postando..."
+            : answer && posting
+            ? "Respondendo..."
+            : answer
+            ? "Responder"
+            : "Postar"}
+        </button>
       </div>
     </form>
   );
