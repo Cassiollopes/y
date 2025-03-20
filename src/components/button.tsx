@@ -75,12 +75,12 @@ export default function ActionButton({
         <div
           className={clsx(
             `p-4 rounded-full absolute transition-all duration-200 ${
-              contrast ? "bg-slate-600/30" : ""
+              contrast ? "bg-slate-600/20" : ""
             }`,
             {
               "group-hover:bg-pink-600/20": color === "pink",
               "group-hover:bg-sky-600/20": color === "sky",
-              "group-hover:bg-slate-600/20":
+              "group-hover:bg-slate-600/30":
                 color !== "sky" && color !== "pink",
             }
           )}

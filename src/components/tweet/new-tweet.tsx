@@ -162,17 +162,17 @@ export default function NewTweet({
       <input type="hidden" name="text" value={text ?? ""} />
 
       {photoFile && (
-        <div className="relative w-full pl-[52px] max-h-[60vh] overflow-hidden">
+        <div className="relative rounded-2xl mt-2 min-flex-1 ml-[48px] max-h-[70vh] overflow-hidden">
           <Image
             src={URL.createObjectURL(photoFile)}
             alt="Selected photo"
             width={500}
             height={500}
-            className="rounded-lg w-full h-fit border mt-2"
+            className="w-full h-fit"
           />
           <ActionButton
             label="Remover"
-            icon={<BsX className="h-5 w-5" />}
+            icon={<BsX className="h-6 w-6" />}
             onClick={() => setPhotoFile(undefined)}
             className="absolute right-4 top-6"
             contrast={true}

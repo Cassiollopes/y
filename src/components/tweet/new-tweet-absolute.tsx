@@ -53,7 +53,7 @@ export default function NewTweetAbsolute({
               callback();
               document.documentElement.style.overflow = "auto";
             }}
-            icon={<BsX className="h-5 w-5" />}
+            icon={<BsX className="h-6 w-6" />}
           />
         </div>
         <div className="md:hidden p-4">
