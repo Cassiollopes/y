@@ -39,7 +39,9 @@ export default function Nav({ user }: { user: User }) {
           className="md:w-[50px] md:h-[50px] justify-center gap-0 md:mb-0.5"
           link="/"
         >
-          <h1 className="max-md:text-3xl md:text-4xl font-serif font-extrabold">Y</h1>
+          <h1 className="max-md:text-3xl md:text-4xl font-serif font-extrabold">
+            Y
+          </h1>
         </SideButton>
         <SideButton
           label="Página Inicial"
@@ -48,6 +50,18 @@ export default function Nav({ user }: { user: User }) {
           iconFill={<GoHomeFill className="h-8 w-8" />}
           pathname={pathname}
         />
+        {pathname === "/" && (
+          <SubmitButton
+            onClick={() => setShowInput(true)}
+            variant={"mobileIcon"}
+          >
+            <LuSend />
+          </SubmitButton>
+        )}
+
+        {showInput && (
+          <NewTweetAbsolute user={user} callback={() => setShowInput(false)} />
+        )}
         <SubmitButton
           onClick={() => setShowInput(true)}
           className="max-md:hidden bg-white 2xl:p-3.5 mt-2 rounded-full text-black font-bold w-[90%] max-2xl:w-[50px] max-2xl:h-[50px] relative"
