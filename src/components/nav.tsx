@@ -55,7 +55,6 @@ export default function Nav({ user }: { user: User }) {
           <p className="max-2xl:hidden">Postar</p>
           <LuSend className="2xl:hidden h-5 w-5 absolute" />
         </SubmitButton>
-
         <SideButton
           className="md:mt-4 2xl:w-full"
           onClick={() => setShowSignOut(true)}
