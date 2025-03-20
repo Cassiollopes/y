@@ -285,7 +285,7 @@ export default function NewTweet({
             (text != undefined && text.length > 200)
           }
           formAction={addTweet}
-          className="text-xs bg-sky-500 font-bold rounded-full px-3 py-1.5 fixed top-3 right-4 disabled:opacity-50"
+          className="text-sm font-semibold bg-sky-500 leading-tight rounded-full px-3.5 py-1.5 fixed top-3 right-4 disabled:opacity-50"
         >
           {posting && !answer
             ? "Postando..."
