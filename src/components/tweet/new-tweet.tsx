@@ -132,10 +132,10 @@ export default function NewTweet({
     <form
       className={`flex w-full justify-between ${
         answerOnTweet ? "p-0" : "px-4 py-3 pt-4"
-      } ${(showActions || !answerOnTweet) && " flex-col"}`}
+      } ${(showActions || !answerOnTweet) && " flex-col"} ${answer && "pt-1"}`}
       onClick={answerOnTweet ? () => setShowActions(true) : undefined}
     >
-      <div className="flex items-start gap-2">
+      <div className="flex items-start gap-2 w-full">
         <Image
           src={user.user_metadata.avatar_url}
           alt={user.id}
@@ -156,7 +156,7 @@ export default function NewTweet({
           data-placeholder={
             answer ? "Postar resposta" : "O que você está pensando?"
           }
-          className="py-1 flex-1 bg-transparent border-none outline-none text-xl max-md:text-lg placeholder-zinc-500 empty:before:content-[attr(data-placeholder)] empty:before:text-zinc-500 whitespace-pre-wrap break-words overflow-hidden leading-tight"
+          className={`py-1 flex-1 bg-transparent border-none outline-none text-xl max-md:text-lg placeholder-zinc-500 empty:before:content-[attr(data-placeholder)] empty:before:text-zinc-500 whitespace-pre-wrap break-words overflow-hidden leading-tight ${callback && "min-h-[96px]"} cursor-text`}
         />
       </div>
       <input type="hidden" name="text" value={text ?? ""} />

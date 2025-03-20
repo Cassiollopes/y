@@ -77,7 +77,7 @@ export default function Tweet({
       className={`flex gap-[6px] justify-start w-full transition-all duration-200 text-[15px] ${
         tweetWithAnswer ? "border-t-0" : "cursor-pointer px-4 py-3"
       } ${!answerTweet && !answer && "border-t hover:bg-white/[0.025]"} ${
-        answer && "cursor-auto"
+        answer && "cursor-text"
       } ${tweet.image ? imageUrl ? "flex" : "hidden" : "" }`}
     >
       {!tweetWithAnswer && (
