@@ -24,23 +24,14 @@ export default function NewTweetAbsolute({
     document.documentElement.style.overflow = "hidden";
     document.documentElement.style.scrollbarGutter = "stable";
 
-    // Adiciona um estado ao histórico
-    window.history.pushState({ page: "your-page" }, "");
-
-    const handlePopState = () => {
-      // Adiciona novamente o estado ao histórico quando voltar é pressionado
-      window.history.pushState({ page: "your-page" }, "");
-
-      // Implementa o comportamento desejado em vez de voltar
-      callback();
-    };
-
-    window.addEventListener("popstate", handlePopState);
+    if(window.innerWidth < 768) {
+      document.documentElement.style.overflowY = "auto";
+      document.documentElement.style.scrollbarGutter = "auto";
+    }
 
     return () => {
       document.documentElement.style.overflow = "auto";
       document.documentElement.style.scrollbarGutter = "auto";
-      window.removeEventListener("popstate", handlePopState);
     };
   }, [callback]);
 
@@ -52,9 +43,9 @@ export default function NewTweetAbsolute({
           document.documentElement.style.overflow = "auto";
         }
       }}
-      className="pt-[env(safe-area-inset-top)] bg-slate-600/50 fixed inset-0 w-screen h-screen z-[100] flex justify-center items-start md:pt-10"
+      className="bg-slate-600/50 fixed inset-0 w-screen min-h-screen z-[100] flex justify-center items-start md:pt-10 max-md:pb-20 max-md:bg-black"
     >
-      <div className="bg-black md:rounded-2xl w-2/5 max-md:w-full max-md:h-full relative">
+      <div className="bg-black md:rounded-2xl w-2/5 max-md:w-full relative">
         <div className="hidden md:flex absolute top-3 right-4">
           <ActionButton
             label="Fechar"
