@@ -132,7 +132,7 @@ export default function NewTweet({
     <form
       className={`flex w-full justify-between ${
         answerOnTweet ? "p-0" : "px-4 py-3 pt-4"
-      } ${(showActions || !answerOnTweet) && " flex-col"} ${answer && "pt-1"}`}
+      } ${(showActions || !answerOnTweet) && " flex-col"} ${answer ? "pt-1" : ""}`}
       onClick={answerOnTweet ? () => setShowActions(true) : undefined}
     >
       <div className="flex items-start gap-2 w-full">
