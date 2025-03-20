@@ -24,6 +24,11 @@ export default function NewTweetAbsolute({
     document.documentElement.style.overflow = "hidden";
     document.documentElement.style.scrollbarGutter = "stable";
 
+    if (window.screen.width < 768) {
+      document.documentElement.style.overflow = "auto";
+      document.documentElement.style.scrollbarGutter = "auto";
+    }
+
     window.addEventListener("popstate", callback);
 
     return () => {
