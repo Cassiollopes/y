@@ -78,7 +78,7 @@ export default function Tweet({
         tweetWithAnswer ? "border-t-0" : "cursor-pointer px-4 py-3"
       } ${!answerTweet && !answer && "border-t hover:bg-white/[0.025]"} ${
         answer && "cursor-text"
-      } ${tweet.image ? imageUrl ? "flex" : "hidden" : "" }`}
+      }`}
     >
       {!tweetWithAnswer && (
         <div className="min-w-[40px] max-w-[40px] flex flex-col items-center gap-1">
