@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { BsPatchCheckFill } from "react-icons/bs";
-import ImageUpload from "../image";
 import Likes from "../likes";
 import { User } from "@supabase/supabase-js";
 import {
@@ -14,6 +13,8 @@ import {
 import Answer from "../answer";
 import { TweetWithAuthor } from "@/utils/types";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { createClient } from "@/utils/supabase/client";
 
 interface TweetProps {
   tweet: TweetWithAuthor;
@@ -37,6 +38,31 @@ export default function Tweet({
     tweet.author.user_name || tweet.author.name
   );
 
+  const [imageUrl, setImageUrl] = useState<string | undefined>();
+
+  useEffect(() => {
+    if (!tweet.image) return;
+    const supabase = createClient();
+
+    async function downloadImage(path: string) {
+      try {
+        const { data, error } = await supabase.storage
+          .from("images")
+          .download(path);
+        if (error) {
+          throw error;
+        }
+
+        const url = URL.createObjectURL(data);
+        setImageUrl(url);
+      } catch (error) {
+        console.log("Error downloading image: ", error);
+      }
+    }
+
+    if (tweet.image) downloadImage(tweet.image);
+  }, [tweet.image]);
+
   return (
     <article
       onClick={(e) => {
@@ -52,7 +78,7 @@ export default function Tweet({
         tweetWithAnswer ? "border-t-0" : "cursor-pointer px-4 py-3"
       } ${!answerTweet && !answer && "border-t hover:bg-white/[0.025]"} ${
         answer && "cursor-auto"
-      }`}
+      } ${tweet.image ? imageUrl ? "flex" : "hidden" : "" }`}
     >
       {!tweetWithAnswer && (
         <div className="min-w-[40px] max-w-[40px] flex flex-col items-center gap-1">
@@ -103,7 +129,20 @@ export default function Tweet({
         {tweet.text && (
           <p className={`leading-none break-words w-full`}>{tweet.text}</p>
         )}
-        {tweet.image && !answer && <ImageUpload url={tweet.image} />}
+        {imageUrl && !answer && (
+          <div className="border w-full mt-3 rounded-2xl overflow-hidden ">
+            <Image
+              src={imageUrl}
+              alt=""
+              width={500}
+              height={500}
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI/wN4oEBJWAAAAABJRU5ErkJggg=="
+              className="w-full h-fit max-h-[500px] object-contain opacity-0 transition-opacity duration-300"
+              onLoadingComplete={(img) => img.classList.remove("opacity-0")}
+            />
+          </div>
+        )}
         {tweetWithAnswer && (
           <p className="text-zinc-500 font-light py-3">
             {FullDateFormatter(tweet.created_at)}
