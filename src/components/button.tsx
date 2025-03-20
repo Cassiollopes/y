@@ -71,16 +71,16 @@ export default function ActionButton({
         {fill ? fillLabel : label}
       </div>
       <div className="flex justify-center items-center relative">
-        {fill ? iconFill : icon}
+        <div className="z-10">{fill ? iconFill : icon}</div>
         <div
           className={clsx(
             `p-4 rounded-full absolute transition-all duration-200 ${
-              contrast ? "bg-slate-600/20" : ""
+              contrast ? "bg-zinc-900" : ""
             }`,
             {
               "group-hover:bg-pink-600/20": color === "pink",
               "group-hover:bg-sky-600/20": color === "sky",
-              "group-hover:bg-slate-600/30":
+              "group-hover:bg-neutral-800":
                 color !== "sky" && color !== "pink",
             }
           )}
