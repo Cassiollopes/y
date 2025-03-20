@@ -56,7 +56,7 @@ export default function NewTweetAbsolute({
             icon={<BsX className="h-6 w-6" />}
           />
         </div>
-        <div className="md:hidden p-4">
+        <div className="md:hidden p-4 sticky inset-0 backdrop-blur-lg bg-black/70">
           <ActionButton
             label="Fechar"
             onClick={() => {
