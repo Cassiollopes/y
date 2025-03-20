@@ -43,7 +43,7 @@ export default function NewTweetAbsolute({
           document.documentElement.style.overflow = "auto";
         }
       }}
-      className="bg-slate-600/50 fixed inset-0 w-screen min-h-screen z-[100] flex justify-center items-start md:pt-10 max-md:pb-20 max-md:bg-black"
+      className="bg-slate-600/50 fixed inset-0 w-screen min-h-screen z-[100] flex justify-center items-start md:pt-10 max-md:pb-20 max-md:bg-black overflow-y-auto"
     >
       <div className="bg-black md:rounded-2xl w-2/5 max-md:w-full relative">
         <div className="hidden md:flex absolute top-3 right-4">
