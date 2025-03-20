@@ -118,7 +118,7 @@ export default function Tweet({
               >
                 {name}
               </p>
-              <BsPatchCheckFill className="fill-sky-500 h-4 w-4" />
+              <BsPatchCheckFill className="fill-blue_twitter h-4 w-4" />
             </div>
             <div className="text-zinc-400/90 font-extralight flex">
               <p className="truncate min-w-0 flex-1">{userName}&nbsp;</p>
@@ -151,7 +151,7 @@ export default function Tweet({
         {answer ? (
           <div>
             <p className="text-zinc-500 pt-4">
-              Respondendo <span className="text-sky-500">{userName}</span>
+              Respondendo <span className="text-blue_twitter">{userName}</span>
             </p>
           </div>
         ) : (

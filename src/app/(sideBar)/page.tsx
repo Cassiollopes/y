@@ -24,7 +24,7 @@ export default async function Home() {
       <Header className="max-md:border-none">
         <div className="h-full py-4 relative">
           <p className="font-bold text-sm">Para você</p>
-          <div className="absolute bottom-0 bg-sky-500 h-1 w-full rounded-full"></div>
+          <div className="absolute bottom-0 bg-blue_twitter h-1 w-full rounded-full"></div>
         </div>
       </Header>
       <div className="max-md:hidden border-b">

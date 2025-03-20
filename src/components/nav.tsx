@@ -34,20 +34,20 @@ export default function Nav({ user }: { user: User }) {
 
   return (
     <div className="flex max-2xl:justify-end md:py-1 xl:w-[15%] 2xl:w-[20.7%] max-md:bottom-0 max-md:left-0 sticky md:top-0 z-[100] max-md:bg-black max-md:h-fit max-md:w-full max-md:justify-center">
-      <div className="flex md:flex-col max-2xl:items-center md:max-2xl:w-fit w-full max-md:justify-around max-md:py-2 max-md:border-t">
+      <div className="flex md:flex-col max-2xl:items-center md:max-2xl:w-fit w-full max-md:justify-around max-md:border-t max-md:h-[52px]">
         <SideButton
           className="md:w-[50px] md:h-[50px] justify-center gap-0 md:mb-0.5"
           link="/"
         >
-          <h1 className="max-md:text-3xl md:text-4xl font-serif font-extrabold">
+          <h1 className="max-md:text-[28px] md:text-4xl font-serif font-extrabold">
             Y
           </h1>
         </SideButton>
         <SideButton
           label="Página Inicial"
           link="/"
-          icon={<GoHome className="h-8 w-8" />}
-          iconFill={<GoHomeFill className="h-8 w-8" />}
+          icon={<GoHome className="h-8 w-8 max-md:h-7 max-md:w-7" />}
+          iconFill={<GoHomeFill className="h-8 w-8 max-md:h-7 max-md:w-7" />}
           pathname={pathname}
         />
         {pathname === "/" && (
@@ -79,7 +79,7 @@ export default function Nav({ user }: { user: User }) {
             alt={user.id}
             width={40}
             height={40}
-            className="rounded-full w-[40px] h-[40px] max-md:h-[32px] max-md:w-[32px]"
+            className="rounded-full w-[40px] h-[40px] max-md:h-[28px] max-md:w-[28px]"
           />
           <div className="w-full flex justify-between items-center max-2xl:hidden">
             <div className="text-[15px] flex flex-col items-start leading-5">

@@ -193,7 +193,7 @@ export default function NewTweet({
           <div className="mr-auto">
             <ActionButton
               color={"sky"}
-              icon={<TbPhoto className="text-sky-500 h-5 w-5" />}
+              icon={<TbPhoto className="text-blue_twitter h-5 w-5" />}
               label="Adicionar Foto"
               onClick={handleButtonClick}
             />
@@ -285,7 +285,7 @@ export default function NewTweet({
             (text != undefined && text.length > 200)
           }
           formAction={addTweet}
-          className="text-sm font-semibold bg-sky-500 leading-tight rounded-full px-3.5 py-1.5 fixed top-3 right-4 disabled:opacity-50"
+          className="text-sm font-semibold bg-blue_twitter leading-tight rounded-full px-3.5 py-1.5 fixed top-3 right-4 disabled:opacity-50"
         >
           {posting && !answer
             ? "Postando..."

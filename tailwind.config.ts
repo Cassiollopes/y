@@ -12,6 +12,7 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         default: "white",
+        blue_twitter: "rgb(29, 155, 240)",
       },
       screens: {
         "2xl": "1400px",
