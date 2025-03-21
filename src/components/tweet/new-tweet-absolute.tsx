@@ -21,15 +21,23 @@ export default function NewTweetAbsolute({
   callback,
 }: NewTweetAbsoluteProps) {
   useEffect(() => {
+    const fixVh = () => {
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+    };
+
+    fixVh();
+    window.addEventListener('resize', fixVh);
+
     document.documentElement.style.overflow = "hidden";
     document.documentElement.style.scrollbarGutter = "stable";
 
-    if(window.innerWidth < 768) {
+    if (window.innerWidth < 768) {
       document.documentElement.style.overflowY = "auto";
       document.documentElement.style.scrollbarGutter = "auto";
     }
 
     return () => {
+      window.removeEventListener('resize', fixVh);
       document.documentElement.style.overflow = "auto";
       document.documentElement.style.scrollbarGutter = "auto";
     };
@@ -43,7 +51,7 @@ export default function NewTweetAbsolute({
           document.documentElement.style.overflow = "auto";
         }
       }}
-      className="bg-slate-600/50 fixed inset-0 w-screen min-h-screen z-[100] flex justify-center items-start md:pt-10 max-md:pb-20 max-md:bg-black overflow-y-auto cursor-auto"
+      className="bg-slate-600/50 fixed inset-0 w-screen h-[calc(var(--vh,1vh)*100)] z-[100] flex justify-center items-start md:pt-10 max-md:pb-20 max-md:bg-black overflow-y-auto cursor-auto"
     >
       <div className="bg-black md:rounded-2xl w-2/5 max-md:w-full relative">
         <div className="hidden md:flex absolute top-3 right-4">
