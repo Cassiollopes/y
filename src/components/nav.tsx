@@ -120,7 +120,7 @@ export default function Nav({ user }: { user: User }) {
         <>
           <button
             onClick={signOut}
-            className="flex max-md:left-6 md:left-0 max-md:w-fit truncate max-md:bottom-16 -bottom-12 p-4 text-sm font-extrabold shadow-md rounded-2xl bg-background w-[300px] fixed md:absolute z-[200] hover:bg-zinc-900"
+            className="flex max-md:left-6 md:left-0 max-md:w-fit truncate max-md:bottom-20 -bottom-12 p-4 text-sm font-extrabold shadow-md rounded-2xl bg-background w-[300px] fixed md:absolute z-[200] hover:bg-zinc-900"
             style={{ boxShadow: "0px 0px 7px rgba(255, 255, 255, 0.5)" }}
           >
             Sair de {userName}
