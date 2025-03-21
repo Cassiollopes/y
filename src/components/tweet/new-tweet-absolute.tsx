@@ -25,7 +25,7 @@ export default function NewTweetAbsolute({
     document.documentElement.style.overflow = "hidden";
     document.documentElement.style.scrollbarGutter = "stable";
 
-    if (window.innerWidth < 768) {
+    if(window.innerWidth < 768) {
       document.documentElement.style.overflowY = "auto";
       document.documentElement.style.scrollbarGutter = "auto";
     }
@@ -37,50 +37,50 @@ export default function NewTweetAbsolute({
   }, [callback]);
 
   return (
-    <Div100vh
-      onClick={(e) => {
-        if (e.target === e.currentTarget) {
-          callback();
-          document.documentElement.style.overflow = "auto";
-        }
-      }}
-      className="bg-slate-600/50 fixed inset-0 w-screen min-h-screen z-[100] flex justify-center items-start md:pt-10 max-md:pb-20 max-md:bg-black overflow-y-auto cursor-auto"
-    >
-      <div className="bg-black md:rounded-2xl w-2/5 max-md:w-full relative">
-        <div className="hidden md:flex absolute top-3 right-4">
-          <ActionButton
-            label="Fechar"
-            onClick={() => {
-              callback();
-              document.documentElement.style.overflow = "auto";
-            }}
-            icon={<BsX className="h-6 w-6" />}
-          />
-        </div>
-        <div className="md:hidden p-4 sticky inset-0 backdrop-blur-lg bg-black/70">
-          <ActionButton
-            label="Fechar"
-            onClick={() => {
-              callback();
-              document.documentElement.style.overflow = "auto";
-            }}
-            icon={<BiArrowBack className="h-5 w-5" />}
-          />
-        </div>
-        {answer && tweet ? (
-          <>
-            <Tweet user={user} tweet={tweet} answer={true} />
-            <NewTweet
-              user={user}
-              answer={true}
-              tweetId={tweet.id}
-              callback={callback}
+      <Div100vh
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            callback();
+            document.documentElement.style.overflow = "auto";
+          }
+        }}
+        className="bg-slate-600/50 fixed inset-0  z-[100] flex justify-center items-start md:pt-10 max-md:pb-20 max-md:bg-black overflow-y-auto cursor-auto"
+      >
+        <div className="bg-black md:rounded-2xl w-2/5 max-md:w-full relative">
+          <div className="hidden md:flex absolute top-3 right-4">
+            <ActionButton
+              label="Fechar"
+              onClick={() => {
+                callback();
+                document.documentElement.style.overflow = "auto";
+              }}
+              icon={<BsX className="h-6 w-6" />}
             />
-          </>
-        ) : (
-          <NewTweet user={user} callback={callback} />
-        )}
-      </div>
-    </Div100vh>
+          </div>
+          <div className="md:hidden p-4 sticky inset-0 backdrop-blur-lg bg-black/70">
+            <ActionButton
+              label="Fechar"
+              onClick={() => {
+                callback();
+                document.documentElement.style.overflow = "auto";
+              }}
+              icon={<BiArrowBack className="h-5 w-5" />}
+            />
+          </div>
+          {answer && tweet ? (
+            <>
+              <Tweet user={user} tweet={tweet} answer={true} />
+              <NewTweet
+                user={user}
+                answer={true}
+                tweetId={tweet.id}
+                callback={callback}
+              />
+            </>
+          ) : (
+            <NewTweet user={user} callback={callback} />
+          )}
+        </div>
+      </Div100vh>
   );
 }
