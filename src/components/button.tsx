@@ -28,7 +28,7 @@ export const submitButtonStyles = cva(
   {
     variants: {
       variant: {
-        default: "px-5 py-2 bg-white/95",
+        default: "px-4 py-2 bg-white/95",
         mobileIcon:
           "text-white/95 bg-blue_twitter w-[52px] h-[52px] shadow-md shadow-white/20 fixed bottom-16 mb-2 right-5 md:hidden text-xl",
         icon: "w-[50px] h-[50px]",

@@ -136,7 +136,7 @@ export default function NewTweet({
       }`}
       onClick={answerOnTweet ? () => setShowActions(true) : undefined}
     >
-      <div className="flex items-start gap-2 w-full">
+      <div className="flex items-start gap-2.5 w-full">
         <Image
           src={user.user_metadata.avatar_url}
           alt={user.id}
@@ -157,7 +157,7 @@ export default function NewTweet({
           data-placeholder={
             answer ? "Postar resposta" : "O que você está pensando?"
           }
-          className={`py-1 flex-1 bg-transparent border-none outline-none text-xl max-md:text-lg placeholder-zinc-500 empty:before:content-[attr(data-placeholder)] empty:before:text-zinc-500 whitespace-pre-wrap break-words overflow-hidden leading-tight ${
+          className={`py-2 flex-1 bg-transparent border-none outline-none text-xl max-md:text-lg placeholder-zinc-500 empty:before:content-[attr(data-placeholder)] empty:before:text-zinc-500 whitespace-pre-wrap break-words overflow-hidden leading-tight ${
             callback && "min-h-[96px]"
           } cursor-text`}
         />
@@ -185,7 +185,7 @@ export default function NewTweet({
       <div
         className={` ${
           (showActions || !answerOnTweet) &&
-          "flex w-full items-center justify-end pl-[48px] pt-4 gap-2"
+          "flex w-full items-center justify-end pl-[50px] pt-4 gap-2"
         }`}
       >
         {(showActions || !answerOnTweet) && (
