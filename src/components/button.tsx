@@ -4,13 +4,13 @@ import clsx from "clsx";
 import { ReactNode } from "react";
 
 export const buttonStyles = cva(
-  "flex items-center justify-center gap-1 group transition-all duration-300 text-zinc-400/80 relative",
+  "flex items-center justify-center gap-1 group transition-all duration-300 fill-zinc-400/80 text-zinc-400/80 relative",
   {
     variants: {
       color: {
         default: "text-default/95",
-        pink: "hover:text-pink-600",
-        sky: "hover:text-sky-600",
+        pink: "hover:text-pink-600 hover:fill-pink-600",
+        sky: "hover:text-sky-600 hover:fill-sky-600",
       },
       disabled: {
         true: "opacity-50 cursor-not-allowed",

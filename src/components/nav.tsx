@@ -4,8 +4,6 @@ import { NameFormatter, UserNameFormatter } from "@/utils";
 import { User } from "@supabase/supabase-js";
 import Image from "next/image";
 import { ReactNode, useState } from "react";
-import { GoHome, GoHomeFill } from "react-icons/go";
-import { HiDotsHorizontal } from "react-icons/hi";
 import { LuSend } from "react-icons/lu";
 import { SubmitButton } from "./button";
 import { usePathname, useRouter } from "next/navigation";
@@ -46,8 +44,26 @@ export default function Nav({ user }: { user: User }) {
         <SideButton
           label="Página Inicial"
           link="/"
-          icon={<GoHome className="h-8 w-8 max-md:h-7 max-md:w-7" />}
-          iconFill={<GoHomeFill className="h-8 w-8 max-md:h-7 max-md:w-7" />}
+          icon={
+            <svg
+              viewBox="0 0 24 24"
+              className="h-[26.25px] w-[26.25px] fill-white"
+            >
+              <g>
+                <path d="M21.591 7.146L12.52 1.157c-.316-.21-.724-.21-1.04 0l-9.071 5.99c-.26.173-.409.456-.409.757v13.183c0 .502.418.913.929.913h6.638c.511 0 .929-.41.929-.913v-7.075h3.008v7.075c0 .502.418.913.929.913h6.639c.51 0 .928-.41.928-.913V7.904c0-.301-.158-.584-.408-.758zM20 20l-4.5.01.011-7.097c0-.502-.418-.913-.928-.913H9.44c-.511 0-.929.41-.929.913L8.5 20H4V8.773l8.011-5.342L20 8.764z"></path>
+              </g>
+            </svg>
+          }
+          iconFill={
+            <svg
+              viewBox="0 0 24 24"
+              className="h-[26.25px] w-[26.25px] fill-white"
+            >
+              <g>
+                <path d="M21.591 7.146L12.52 1.157c-.316-.21-.724-.21-1.04 0l-9.071 5.99c-.26.173-.409.456-.409.757v13.183c0 .502.418.913.929.913H9.14c.51 0 .929-.41.929-.913v-7.075h3.909v7.075c0 .502.417.913.928.913h6.165c.511 0 .929-.41.929-.913V7.904c0-.301-.158-.584-.408-.758z"></path>
+              </g>
+            </svg>
+          }
           pathname={pathname}
         />
         {pathname === "/" && (
@@ -86,7 +102,14 @@ export default function Nav({ user }: { user: User }) {
               <p>{NameFormatter(user.user_metadata.name)}</p>
               <p className="font-light text-zinc-500">{userName}</p>
             </div>
-            <HiDotsHorizontal className="h-4 w-4" />
+            <svg
+              viewBox="0 0 24 24"
+              className="h-[18.75px] w-[18.75px] fill-white"
+            >
+              <g>
+                <path d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path>
+              </g>
+            </svg>{" "}
           </div>
         </SideButton>
       </div>
