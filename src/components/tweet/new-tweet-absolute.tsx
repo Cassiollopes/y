@@ -6,6 +6,7 @@ import ActionButton from "../button";
 import { BiArrowBack } from "react-icons/bi";
 import { BsX } from "react-icons/bs";
 import { useEffect } from "react";
+import Div100vh from "react-div-100vh";
 
 export interface NewTweetAbsoluteProps {
   user: User;
@@ -24,7 +25,7 @@ export default function NewTweetAbsolute({
     document.documentElement.style.overflow = "hidden";
     document.documentElement.style.scrollbarGutter = "stable";
 
-    if(window.innerWidth < 768) {
+    if (window.innerWidth < 768) {
       document.documentElement.style.overflowY = "auto";
       document.documentElement.style.scrollbarGutter = "auto";
     }
@@ -36,7 +37,7 @@ export default function NewTweetAbsolute({
   }, [callback]);
 
   return (
-    <div
+    <Div100vh
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           callback();
@@ -80,6 +81,6 @@ export default function NewTweetAbsolute({
           <NewTweet user={user} callback={callback} />
         )}
       </div>
-    </div>
+    </Div100vh>
   );
 }
