@@ -32,14 +32,12 @@ export default function Nav({ user }: { user: User }) {
 
   return (
     <div className="flex max-2xl:justify-end md:py-1 xl:w-[15%] 2xl:w-[20.7%] max-md:bottom-0 max-md:left-0 sticky md:top-0 z-[100] max-md:bg-black max-md:h-fit max-md:w-full max-md:justify-center">
-      <div className="flex md:flex-col max-2xl:items-center md:max-2xl:w-fit w-full max-md:justify-around max-md:border-t max-md:h-[52px]">
+      <div className="flex md:flex-col max-2xl:items-center md:w-fit w-full max-md:justify-center max-md:border-t gap-20 h-[52.5px]">
         <SideButton
-          className="md:w-[50px] md:h-[50px] justify-center gap-0 md:mb-0.5"
+          className="md:w-[50px] md:h-[50px] justify-center gap-0 md:mb-0.5 max-md:hidden "
           link="/"
         >
-          <h1 className="max-md:text-[28px] md:text-4xl font-serif font-extrabold">
-            Y
-          </h1>
+          <h1 className="text-4xl font-serif font-extrabold">Y</h1>
         </SideButton>
         <SideButton
           label="Página Inicial"
@@ -71,7 +69,11 @@ export default function Nav({ user }: { user: User }) {
             onClick={() => setShowInput(true)}
             variant={"mobileIcon"}
           >
-            <LuSend />
+            <svg viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-white">
+              <g>
+                <path d="M23 3c-6.62-.1-10.38 2.421-13.05 6.03C7.29 12.61 6 17.331 6 22h2c0-1.007.07-2.012.19-3H12c4.1 0 7.48-3.082 7.94-7.054C22.79 10.147 23.17 6.359 23 3zm-7 8h-1.5v2H16c.63-.016 1.2-.08 1.72-.188C16.95 15.24 14.68 17 12 17H8.55c.57-2.512 1.57-4.851 3-6.78 2.16-2.912 5.29-4.911 9.45-5.187C20.95 8.079 19.9 11 16 11zM4 9V6H1V4h3V1h2v3h3v2H6v3H4z"></path>
+              </g>
+            </svg>{" "}
           </SubmitButton>
         )}
 
@@ -95,7 +97,7 @@ export default function Nav({ user }: { user: User }) {
             alt={user.id}
             width={40}
             height={40}
-            className="rounded-full w-[40px] h-[40px] max-md:h-[28px] max-md:w-[28px]"
+            className="rounded-full w-[40px] h-[40px] max-md:h-[26.25px] max-md:w-[26.25px]"
           />
           <div className="w-full flex justify-between items-center max-2xl:hidden">
             <div className="text-[15px] flex flex-col items-start leading-5">
@@ -177,7 +179,7 @@ export function SideButton({
       style={props.style}
     >
       <div
-        className={` font-bold text-xl md:p-3 rounded-full md:group-hover:bg-white/10 transition-all duration-200 items-center flex w-fit ${props.className}`}
+        className={`font-bold text-xl md:p-3 rounded-full md:group-hover:bg-white/10 transition-all duration-200 items-center flex w-fit ${props.className}`}
         style={{ gap: props.style?.gap || "16px" }}
       >
         {props.children}
