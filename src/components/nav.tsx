@@ -97,7 +97,7 @@ export default function Nav({ user }: { user: User }) {
             alt={user.id}
             width={40}
             height={40}
-            className="rounded-full w-[40px] h-[40px] max-md:h-[27px] max-md:w-[27px]"
+            className="rounded-full w-[40px] h-[40px] max-md:h-[28px] max-md:w-[28px]"
           />
           <div className="w-full flex justify-between items-center max-2xl:hidden">
             <div className="text-[15px] flex flex-col items-start leading-5">
