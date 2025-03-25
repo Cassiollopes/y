@@ -87,9 +87,9 @@ export default function NewTweet({
     setText(undefined);
 
     if (showActions) setShowActions(false);
+    if (callback) callback();
+    
     router.refresh();
-
-    if (callback) return callback();
   };
 
   useEffect(() => {
