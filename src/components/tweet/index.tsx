@@ -142,10 +142,9 @@ export default function Tweet({
               alt=""
               width={500}
               height={500}
-              placeholder="blur"
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI/wN4oEBJWAAAAABJRU5ErkJggg=="
-              className="w-full h-fit max-h-[500px] object-contain opacity-0 transition-opacity duration-300"
+              className="w-full h-fit max-h-[500px] object-contain opacity-0 transition-opacity duration-700"
               onLoadingComplete={(img) => img.classList.remove("opacity-0")}
+              loading="lazy"
             />
           </div>
         )}
