@@ -3,8 +3,6 @@ import Header from "@/components/header";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import NewTweet from "@/components/tweet/new-tweet";
-import { Suspense } from "react";
-import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
@@ -30,19 +28,7 @@ export default async function Home() {
       <div className="max-md:hidden border-b">
         <NewTweet user={user} />
       </div>
-      <Suspense
-        fallback={
-          <Image
-            width={40}
-            height={40}
-            src="/loading.svg"
-            alt="Loading"
-            className="pt-16 opacity-60 m-auto"
-          />
-        }
-      >
-        <Feed user={user} />
-      </Suspense>
+      <Feed user={user} />
     </div>
   );
 }
