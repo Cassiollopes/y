@@ -285,25 +285,27 @@ export default function NewTweet({
             : "Postar"}
         </SubmitButton>
       </div>
-      <div className="md:hidden">
-        <button
-          disabled={
-            (!text && !photoFile) ||
-            posting ||
-            (text != undefined && text.length > 200)
-          }
-          formAction={addTweet}
-          className="text-sm font-semibold bg-blue_twitter leading-tight rounded-full px-3.5 py-1.5 fixed top-3 right-4 disabled:opacity-50"
-        >
-          {posting && !answer
-            ? "Postando..."
-            : answer && posting
-            ? "Respondendo..."
-            : answer
-            ? "Responder"
-            : "Postar"}
-        </button>
-      </div>
+      {callback && (
+        <div className="md:hidden ">
+          <button
+            disabled={
+              (!text && !photoFile) ||
+              posting ||
+              (text != undefined && text.length > 200)
+            }
+            formAction={addTweet}
+            className="text-sm font-semibold bg-blue_twitter leading-tight rounded-full px-3.5 py-1.5 fixed top-3 right-4 disabled:opacity-50"
+          >
+            {posting && !answer
+              ? "Postando..."
+              : answer && posting
+              ? "Respondendo..."
+              : answer
+              ? "Responder"
+              : "Postar"}
+          </button>
+        </div>
+      )}
     </form>
   );
 }
