@@ -14,15 +14,12 @@ export default async function Login() {
   }
 
   return (
-    <div className="flex flex-col gap-4 justify-center h-screen items-center">
-      <AuthButton
-        provider="google"
-        icon={<BsGoogle />}
-      />
-      <AuthButton
-        provider="github"
-        icon={<BsGithub />}
-      />
+    <div className="flex flex-col gap-4 justify-center h-screen items-center p-4">
+      <div className="border p-8 rounded-3xl bg-white/5 flex flex-col gap-1 items-center w-full max-w-[400px]">
+        <AuthButton provider="google" icon={<BsGoogle />} />
+        ou
+        <AuthButton provider="github" icon={<BsGithub />} />
+      </div>
     </div>
   );
 }

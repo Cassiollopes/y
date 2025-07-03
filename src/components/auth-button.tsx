@@ -31,11 +31,11 @@ export default function AuthButton({ provider, icon, logged }: AuthButtonProps) 
 
   return (
     <button
-      className="bg-white w-fit px-4 p-2 rounded-full text-black flex items-center gap-2"
+      className="bg-white w-full px-4 p-2 rounded-full text-black flex items-center justify-center gap-2 hover:opacity-80 transition-all font-bold"
       onClick={logged ? signOut : signIn}
     >
       {icon}
-      {logged ? "SignOut" : `SignIn com ${provider}`}
+      {logged ? "Sair" : `Continuar com ${provider}`}
     </button>
   );
 }
