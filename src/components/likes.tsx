@@ -12,6 +12,14 @@ export default function Likes({ tweet }: { tweet: TweetWithAuthor }) {
   const [userHasLiked, setUserHasLiked] = useState(tweet.user_has_liked);
 
   const handleLike = async () => {
+    if(userHasLiked) {
+      setOptimisticLikes(optimisticLikes - 1);
+      setUserHasLiked(false);
+    } else {
+      setOptimisticLikes(optimisticLikes + 1);
+      setUserHasLiked(true);
+    }
+
     const supabase = createClient();
 
     const {
@@ -20,15 +28,11 @@ export default function Likes({ tweet }: { tweet: TweetWithAuthor }) {
 
     if (user) {
       if (userHasLiked) {
-        setOptimisticLikes(optimisticLikes - 1);
-        setUserHasLiked(false);
         await supabase
           .from("likes")
           .delete()
           .match({ user_id: user.id, tweet_id: tweet.id });
       } else {
-        setOptimisticLikes(optimisticLikes + 1);
-        setUserHasLiked(true);
         await supabase.from("likes").insert({
           user_id: user.id,
           tweet_id: tweet.id,
