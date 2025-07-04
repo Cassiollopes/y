@@ -195,7 +195,7 @@ export default function NewTweet({
             <input
               ref={fileInputRef}
               type="file"
-              accept="image/jpeg"
+              accept="image/*"
               hidden
               onChange={(e) => {
                 if (e.target.files) {
