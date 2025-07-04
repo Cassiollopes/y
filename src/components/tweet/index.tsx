@@ -138,13 +138,14 @@ export default function Tweet({
         {imageUrl && !answer && (
           <div className="border w-full mt-3 rounded-2xl overflow-hidden ">
             <Image
+              priority
               src={imageUrl}
               alt=""
               width={500}
               height={500}
               className="w-full h-fit max-h-[500px] object-contain opacity-0 transition-opacity duration-700"
               onLoadingComplete={(img) => img.classList.remove("opacity-0")}
-              loading="lazy"
+              loading="eager"
             />
           </div>
         )}
