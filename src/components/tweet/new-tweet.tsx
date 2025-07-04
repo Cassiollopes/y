@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { BsX } from "react-icons/bs";
 import ActionButton, { SubmitButton } from "../button";
 import MaxCharsRadius from "./maxCharsRadius";
+import TextInput from "./textInput";
 
 interface NewTweetProps {
   user: User;
@@ -24,13 +25,14 @@ export default function NewTweet({
   callback,
   answerOnTweet,
 }: NewTweetProps) {
-  const router = useRouter();
   const [text, setText] = useState<string | undefined>();
   const [photoFile, setPhotoFile] = useState<File | undefined>();
   const [showActions, setShowActions] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [posting, setPosting] = useState(false);
+
+  const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {
@@ -40,56 +42,63 @@ export default function NewTweet({
 
   const addTweet = async (formData: FormData) => {
     setPosting(true);
-    const supabase = createClient();
-    const text = formData.get("text") as string;
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    try {
+      const supabase = createClient();
+      const text = formData.get("text") as string;
 
-    console.log(photoFile);
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
-    if (user) {
-      if (photoFile) {
-        const fileExt = photoFile.name.split(".").pop();
-        const filePath = `${user.id}-${Math.random()}.${fileExt}`;
+      if (user) {
+        if (photoFile) {
+          const fileExt = photoFile.name.split(".").pop();
+          const filePath = `${user.id}-${Math.random()}.${fileExt}`;
 
-        const { error: uploadError } = await supabase.storage
-          .from("images")
-          .upload(filePath, photoFile);
+          const { error: uploadError } = await supabase.storage
+            .from("images")
+            .upload(filePath, photoFile);
 
-        if (uploadError) {
-          throw uploadError;
-        }
+          if (uploadError) {
+            throw uploadError;
+          }
 
-        await supabase.from("tweets").insert({
-          text,
-          user_id: user.id,
-          image: filePath,
-          ...(answer && tweetId ? { tweet_id: tweetId } : {}),
-        });
+          await supabase.from("tweets").insert({
+            text,
+            user_id: user.id,
+            image: filePath,
+            ...(answer && tweetId ? { tweet_id: tweetId } : {}),
+          });
 
-        setPhotoFile(undefined);
-      } else {
-        if (answer && tweetId) {
-          await supabase
-            .from("tweets")
-            .insert({ text, tweet_id: tweetId, user_id: user.id });
+          setPhotoFile(undefined);
         } else {
-          await supabase.from("tweets").insert({ text, user_id: user.id });
+          if (answer && tweetId) {
+            await supabase
+              .from("tweets")
+              .insert({ text, tweet_id: tweetId, user_id: user.id });
+          } else {
+            await supabase.from("tweets").insert({ text, user_id: user.id });
+          }
         }
       }
-    }
-    setPosting(false);
-    if (inputRef.current) {
-      inputRef.current.textContent = "";
-    }
-    setText(undefined);
+    } catch (error) {
+      console.error("Error adding tweet:", error);
+    } finally {
+      setPosting(false);
 
-    if (showActions) setShowActions(false);    
-    router.refresh();
+      if (inputRef.current) {
+        inputRef.current.textContent = "";
+      }
 
-    if (callback) return callback();
+      setText(undefined);
+
+      if (showActions) setShowActions(false);
+
+      router.refresh();
+
+      if (callback) return callback();
+    }
   };
 
   useEffect(() => {
@@ -97,23 +106,6 @@ export default function NewTweet({
       inputRef.current.focus();
     }
   }, [callback]);
-
-  useEffect(() => {
-    const div = inputRef.current;
-    if (div && text && text.length > 200) {
-      const normalText = text.slice(0, 200);
-      const excessText = text.slice(200);
-      div.innerHTML = `${normalText}<span style="background: rgb(255, 0, 0, 0.5);">${excessText}</span>`;
-      const range = document.createRange();
-      const sel = window.getSelection();
-      range.selectNodeContents(div);
-      range.collapse(false); 
-      if (sel) {
-        sel.removeAllRanges();
-        sel.addRange(range);
-      }
-    }
-  }, [text]);
 
   return (
     <form
@@ -123,6 +115,10 @@ export default function NewTweet({
         answer ? "pt-1" : ""
       }`}
       onClick={answerOnTweet ? () => setShowActions(true) : undefined}
+      onSubmit={(e) => {
+        e.preventDefault();
+        addTweet(new FormData(e.currentTarget));
+      }}
     >
       <div className="flex items-start gap-2.5 w-full">
         <Image
@@ -132,22 +128,12 @@ export default function NewTweet({
           height={40}
           className="rounded-full"
         />
-        <div
-          ref={inputRef}
-          contentEditable="true"
-          onInput={(e) => {
-            const content = (e.target as HTMLDivElement).textContent || "";
-            setText(content);
-            if (content === "") {
-              (e.target as HTMLDivElement).innerHTML = "";
-            }
-          }}
-          data-placeholder={
-            answer ? "Postar resposta" : "O que você está pensando?"
-          }
-          className={`py-2 flex-1 bg-transparent border-none outline-none text-xl max-md:text-lg placeholder-zinc-500 empty:before:content-[attr(data-placeholder)] empty:before:text-zinc-500 whitespace-pre-wrap break-words overflow-hidden leading-tight ${
-            callback && "min-h-[96px]"
-          } cursor-text`}
+        <TextInput
+          text={text}
+          inputRef={inputRef as React.RefObject<HTMLDivElement>}
+          answer={answer}
+          callback={callback}
+          setText={setText}
         />
       </div>
       <input type="hidden" name="text" value={text ?? ""} />
@@ -206,47 +192,25 @@ export default function NewTweet({
             />
           </div>
         )}
-        {(text?.length ?? 0) > 0 && (
-          <MaxCharsRadius text={text} />
-        )}
+        {(text?.length ?? 0) > 0 && <MaxCharsRadius text={text} />}
         <SubmitButton
-          disabled={
-            (!text && !photoFile) ||
-            posting ||
-            (text != undefined && text.length > 200)
-          }
-          formAction={addTweet}
-          className={`text-sm ${callback ? "max-md:hidden" : ""}`}
-        >
-          {posting && !answer
-            ? "Postando..."
-            : answer && posting
-            ? "Respondendo..."
-            : answer
-            ? "Responder"
-            : "Postar"}
-        </SubmitButton>
+          variant="default"
+          text={text}
+          photoFile={photoFile}
+          posting={posting}
+          answer={answer}
+          className={`${callback ? "max-md:hidden" : ""}`}
+        />
       </div>
       {callback && (
-        <div className="md:hidden ">
-          <button
-            disabled={
-              (!text && !photoFile) ||
-              posting ||
-              (text != undefined && text.length > 200)
-            }
-            formAction={addTweet}
-            className="text-sm font-semibold bg-blue_twitter leading-tight rounded-full px-3.5 py-1.5 fixed top-3 right-4 disabled:opacity-50"
-          >
-            {posting && !answer
-              ? "Postando..."
-              : answer && posting
-              ? "Respondendo..."
-              : answer
-              ? "Responder"
-              : "Postar"}
-          </button>
-        </div>
+        <SubmitButton
+          text={text}
+          photoFile={photoFile}
+          posting={posting}
+          answer={answer}
+          callback={callback}
+          className="md:hidden"
+        />
       )}
     </form>
   );

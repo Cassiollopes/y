@@ -28,7 +28,7 @@ export const submitButtonStyles = cva(
   {
     variants: {
       variant: {
-        default: "px-4 py-2 bg-white/95",
+        default: "px-4 py-2 bg-white/95 text-[14px]",
         mobileIcon:
           "text-white/95 bg-blue_twitter w-[52px] h-[52px] shadow-md shadow-white/20 fixed bottom-16 mb-2 right-5 md:hidden text-xl",
         icon: "w-[50px] h-[50px]",
@@ -80,8 +80,7 @@ export default function ActionButton({
             {
               "group-hover:bg-pink-600/20": color === "pink",
               "group-hover:bg-sky-600/20": color === "sky",
-              "group-hover:bg-neutral-800":
-                color !== "sky" && color !== "pink",
+              "group-hover:bg-neutral-800": color !== "sky" && color !== "pink",
             }
           )}
         ></div>
@@ -94,15 +93,66 @@ export default function ActionButton({
 
 export function SubmitButton({
   variant,
+  text,
+  photoFile,
+  posting,
+  answer,
+  callback,
   ...props
-}: VariantProps<typeof submitButtonStyles> &
+}: {
+  variant?: "default" | "mobileIcon" | "icon";
+  text?: string;
+  photoFile?: File | null;
+  posting?: boolean;
+  answer?: boolean;
+  callback?: () => void;
+} & VariantProps<typeof submitButtonStyles> &
   React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       {...props}
-      className={cn(submitButtonStyles({ variant }), props.className)}
+      className={cn(
+        submitButtonStyles({ variant }),
+        props.className,
+        `${
+          callback && variant !== "mobileIcon"
+            ? "text-sm font-semibold bg-blue_twitter leading-tight rounded-full px-3.5 py-1.5 fixed top-3 right-4 disabled:opacity-50 text-white/95"
+            : ""
+        }`
+      )}
+      disabled={
+        (variant !== "mobileIcon" && !text && !photoFile) ||
+        posting ||
+        (text != undefined && text.length > 200)
+      }
     >
+      {variant !== "mobileIcon" && (
+        <div>
+          {posting && !answer ? (
+            <LoadingSpinner callback={callback} />
+          ) : answer && posting ? (
+            <LoadingSpinner callback={callback} />
+          ) : answer ? (
+            "Responder"
+          ) : (
+            "Postar"
+          )}
+        </div>
+      )}
       {props.children}
     </button>
+  );
+}
+
+export function LoadingSpinner({ callback }: { callback?: () => void }) {
+  return (
+    <>
+      <div
+        className={`w-5 h-5 border-2 ${
+          callback ? "border-white/95" : "border-blue_twitter"
+        } border-t-transparent rounded-full animate-spin`}
+      ></div>
+      <div className="fixed inset-0 z-50"></div>
+    </>
   );
 }
