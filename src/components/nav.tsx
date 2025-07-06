@@ -82,10 +82,10 @@ export default function Nav({ user }: { user: User }) {
         )}
         <button
           onClick={() => setShowInput(true)}
-          className="max-md:hidden bg-white 2xl:p-3.5 mt-2 rounded-full text-black font-bold w-[90%] max-2xl:w-[50px] max-2xl:h-[50px] relative"
+          className="max-md:hidden bg-white 2xl:p-3.5 mt-2 rounded-full text-black font-bold w-[90%] max-2xl:w-[50px] max-2xl:h-[50px] relative justify-center flex items-center"
         >
           <p className="max-2xl:hidden">Postar</p>
-          <LuSend className="2xl:hidden h-5 w-5 absolute" />
+          <LuSend className="2xl:hidden h-5 w-5" />
         </button>
         <SideButton
           className="md:mt-4 2xl:w-full"
